@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AddCarLiner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddCarActivity">
+
+
+    <EditText
+        android:id="@+id/idBranchCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר מזהה של הסניף"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/idCarModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר מזהה של דגם המכונית"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/killometer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר קילומטר"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/idCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר המכונית"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/addCarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="הוסף מכונית" />
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddBranchActivity">
+
+
+
+    <EditText
+        android:id="@+id/cityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="שם העיר"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/streetEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="שם הרחוב"
+        android:ems="10"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/numApartEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="מספר דירה"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/idBranchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="מספר הסניף"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/numParkingEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="מספר מקומות חניה"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            style="@android:style/Widget.DeviceDefault.ImageButton"
+            android:layout_width="43dp"
+            android:layout_height="83dp"
+            android:layout_gravity="right"
+            android:src="@drawable/camera_icon"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="500dp"
+            android:minWidth="500dp"
+            android:paddingTop="50dp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/addBranchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="הוסף סניף" />
+</LinearLayout>

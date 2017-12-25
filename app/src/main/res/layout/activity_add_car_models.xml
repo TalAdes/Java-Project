@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddCarModel">
+
+
+    <EditText
+        android:id="@+id/CompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הכנס את שם החברה"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/ModelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הכנס את שם הדגם"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/ModelNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הכנס את מספר הדגם"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/EngineVolume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הכנס את גודל נפח המנוע"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/SeatsNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הכנס את מספר מקומות ישיבה"
+        android:inputType="number" />
+
+    <Spinner
+        android:id="@+id/GearboxSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/GearBox" />
+
+    <Button
+        android:id="@+id/AddButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף" />
+
+
+</LinearLayout>

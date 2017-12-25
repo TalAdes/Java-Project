@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Take&amp;Go</string>
+    <string name="addCarModel">Add Cars Model</string>
+    <string name="showCarModels">Show Cars Models</string>
+    <string name="addCar">Add Car</string>
+    <string name="addBranch">Add Branch</string>
+    <string name="addClient">Add Client</string>
+    <string-array name="GearBox">
+        <item>Automatic</item>
+        <item>Manuel</item>
+    </string-array>
+</resources>

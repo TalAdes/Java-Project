@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddClientActivity">
+
+
+    <EditText
+        android:id="@+id/fnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="שם פרטי"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/lnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="שם משפחה"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/idEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר זהות"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/phoneNumEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="טלפון"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/phone_valid_TW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="דואר אלקטרוני"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/email_valid_TW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/numCreditEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר כרטיס אשראי"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/credit_card_valid_TW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/addClientButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף לקוח" />
+
+</LinearLayout>

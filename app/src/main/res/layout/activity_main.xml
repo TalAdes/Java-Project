@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.liran.takeogo.controller.MainActivity">
+
+    <!--finish buttons config-->
+
+    <Button
+        android:id="@+id/addCarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף מכונית" />
+    <Button
+        android:id="@+id/showAllCarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הצג את כל המכונית" />
+    <Button
+        android:id="@+id/addModelCarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף דגם מכונית" />
+    <Button
+        android:id="@+id/showAllModelCarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הצג את כל דגמי המכונית" />
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/addClientButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף לקוח" />
+
+    <Button
+        android:id="@+id/showAllClientButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הצג את כל הלקוחות" />
+
+    <Button
+        android:id="@+id/showAllBranchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הצג את כל הסניפים" />
+
+    <Button
+        android:id="@+id/addBranchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוסף סניף" />
+</LinearLayout>
