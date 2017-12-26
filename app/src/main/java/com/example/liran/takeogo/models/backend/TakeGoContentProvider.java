@@ -85,13 +85,21 @@ public class TakeGoContentProvider extends ContentProvider {
         String listName = uri.getLastPathSegment();
         switch (listName){
             case "branchs":
-                return db.getBranches();
+                try {
+                    return db.getBranches();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             case "cars":
                 return db.getCars();
 
             case "carModels":
-                return db.getCarModels();
+                try {
+                    return db.getCarModels();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             case "clients":
                 try {
                     return db.getClients();
