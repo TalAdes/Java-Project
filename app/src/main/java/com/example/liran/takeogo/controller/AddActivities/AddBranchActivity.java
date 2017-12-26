@@ -149,20 +149,20 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
                 catch (Exception e)
                 {
                     error = e;
-                    return null;
+                    return ContentUris.withAppendedId(Uri.parse("content://exception_branch"),-1);
                 }
             }
 
             @Override
             protected void onPostExecute(Uri result)
             {
-                Log.i("Kdfd",result.toString());
+                //Log.i("Kdfd",result.toString());
                 super.onPostExecute(result);
                 long id = ContentUris.parseId(result);
-                if(!result.equals("content://exception_branches") && id > 0)
+                if( error == null && id > 0)
                     Toast.makeText(AddBranchActivity.this,"The Branch include to dataBase!",Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(AddBranchActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddBranchActivity.this,error.getMessage().toString(),Toast.LENGTH_SHORT).show();
             }
         }.execute();
     }

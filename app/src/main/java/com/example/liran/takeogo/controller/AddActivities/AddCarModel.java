@@ -85,7 +85,7 @@ public class AddCarModel extends Activity implements View.OnClickListener {
                     return getContentResolver().insert(uri,contentValues);
                 } catch (Exception e) {
                     error = e;
-                    return null;
+                    return ContentUris.withAppendedId(Uri.parse("content://exception_carModel"),-1);
                 }
             }
 
@@ -93,10 +93,10 @@ public class AddCarModel extends Activity implements View.OnClickListener {
             protected void onPostExecute(Uri result) {
                 super.onPostExecute(result);
                 long id = ContentUris.parseId(result);
-                if (!result.equals("content://exception_carModel") && id > 0)
+                if (error == null && id > 0)
                     Toast.makeText(AddCarModel.this, "The car model include to dataBase!", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(AddCarModel.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCarModel.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }.execute();
 

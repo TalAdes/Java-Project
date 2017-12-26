@@ -150,35 +150,37 @@ public class TakeGoContentProvider extends ContentProvider {
                     id = db.addBranch(values);
                     return ContentUris.withAppendedId(uri, id);
                 } catch (Exception e) {
-                    return Uri.parse("content://exception_branches");
+                    throw new RuntimeException(e.getMessage().toString());
                 }
 
 
             case "cars":
                 try {
                     id = db.addCar(values);
+                    return ContentUris.withAppendedId(uri, id);
                 } catch (Exception e) {
-                    return Uri.parse("content://exception_cars");
+                    throw new RuntimeException(e.getMessage().toString());
                 }
 
-                return ContentUris.withAppendedId(uri, id);
+
 
             case "carModels":
                 try {
                     id = db.addCarModel(values);
+                    return ContentUris.withAppendedId(uri, id);
                 } catch (Exception e) {
-                    return Uri.parse("content://exception_carModel");
+                    throw new RuntimeException(e.getMessage().toString());
                 }
 
-                return ContentUris.withAppendedId(uri, id);
+
 
             case "clients":
                 try {
                     id = db.addClient(values);
+                    return ContentUris.withAppendedId(uri, id);
                 } catch (Exception e) {
-                    return Uri.parse("content://exception_clients");
+                    throw new RuntimeException(e.getMessage().toString());
                 }
-                return ContentUris.withAppendedId(uri, id);
 
         }
         return Uri.parse("content://exception_insert");
