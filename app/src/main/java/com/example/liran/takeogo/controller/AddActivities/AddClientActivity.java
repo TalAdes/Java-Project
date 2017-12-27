@@ -148,6 +148,8 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
                     return null;
                 }
             }.execute();
+
+            finish();
         }
         catch (Exception e)
         {
