@@ -14,7 +14,7 @@ if($conn->connected_error)
 {die("Connection failed:" .$conn->connected_error);}
 
 
-$result = $conn->query("SELECT * FROM clients");
+$result = $conn->query("SELECT * FROM carModels");
 $data =  array();
 
 if($result->num_rows > 0) # check if there is any data
@@ -25,7 +25,7 @@ if($result->num_rows > 0) # check if there is any data
     }
 }
 
-echo json_encode(array('clients'=> $data));
+echo json_encode(array('carModels'=> $data));
 $conn->close(); 
         
 ?>

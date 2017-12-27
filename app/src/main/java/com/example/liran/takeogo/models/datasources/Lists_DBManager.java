@@ -188,11 +188,12 @@ public class Lists_DBManager implements IDBManager {
     //@Override public List<CarModel> getCarModels() { return Models;}
     //@Override public List<Client> getClients() { return Clients;}
 
-    @Override    public Cursor getCarModels() {return TakeGoConst.CarModelListToCursor(Models);}
+    @Override    public Cursor getCarModels() throws Exception {return TakeGoConst.CarModelListToCursor();}
     @Override    public Cursor getClients() throws Exception {return TakeGoConst.ClientListToCursor();}
+    @Override    public Cursor getBranches() throws Exception {return TakeGoConst.BranchListToCursor();}
     @Override    public Cursor getCars() {
         return null;
+
     }
     //@Override    public Cursor getCars() {return TakeGoConst.CarListToCursor(Cars);}
-    @Override    public Cursor getBranches() {return TakeGoConst.BranchListToCursor(Branchs);}
 }

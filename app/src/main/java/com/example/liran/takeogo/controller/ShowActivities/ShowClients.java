@@ -26,7 +26,6 @@ public class ShowClients extends Activity {
             new AsyncTask<Void,Void,Cursor>(){
                 @Override
                 protected Cursor doInBackground(Void... voids) {
-                    Exception error;
                     Cursor c;
                     try
                     {
@@ -34,8 +33,7 @@ public class ShowClients extends Activity {
                     }
                     catch (Exception e)
                     {
-                        error = e;
-                        Toast.makeText(ShowClients.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowClients.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         return null;
                     }
                     return c;
@@ -46,11 +44,7 @@ public class ShowClients extends Activity {
                     Toast.makeText(ShowClients.this,"succes :)",Toast.LENGTH_SHORT);
                 }
             }.execute();
-
-
-        } catch (Exception e) {
-            Toast.makeText(this,"fail :(",Toast.LENGTH_SHORT);
-            e.printStackTrace();
         }
+        catch (Exception e) {Toast.makeText(this,"fail :(",Toast.LENGTH_SHORT);}
     }
 }

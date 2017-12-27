@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider android:name=".models.backend.TakeGoContentProvider"
+            android:authorities="com.lirantal.takego"
+            android:enabled="true"
+            android:exported="true"/>
         <activity
             android:name=".controller.AddActivities.AddCarModel"
             android:label="@string/addCarModel" />

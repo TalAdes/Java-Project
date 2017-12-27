@@ -32,8 +32,8 @@ public interface IDBManager {
 
     Cursor getClients() throws Exception;
     Cursor getCars();
-    Cursor getBranches();
-    Cursor getCarModels();
+    Cursor getBranches() throws Exception;
+    Cursor getCarModels() throws Exception;
     //List<CarModel> getCarModels();
     //List<Client> getClients();
     //List<Branch> getBranches();

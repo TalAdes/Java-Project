@@ -18,7 +18,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 
 /**
@@ -51,10 +50,10 @@ public class TakeGoConst {
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
     public static class BranchConst{
         public static final String ID = "_id";
-        public static final String NUMBER_PARKING = "numparking";
+        public static final String NUMBER_PARKING = "numParking";
         public static final String CITY = "city";
         public static final String STREET = "street";
-        public static final String NUM_APARTMENT = "numApar";
+        public static final String NUM_APARTMENT = "numApart";
 
         public static final Uri BranchUri = Uri.withAppendedPath(AUTHORITY_URI,"branches");
         public static final String TABLE_BRANCHES = "branches";
@@ -70,11 +69,11 @@ public class TakeGoConst {
     }
     public static class CarModelConst{
         public static final String ID = "_id";
-        public static final String NAM_COMP ="namComp";
-        public static final String NAME = "name";
-        public static final String ENGINE_CAP = "enginecap";
-        public static final String GEERBOX = "geerbox";
-        public static final String NUMBER_OF_SEATS ="numOfSeats";
+        public static final String NAM_COMP ="company";
+        public static final String NAME = "model";
+        public static final String ENGINE_CAP = "engine";
+        public static final String GEERBOX = "gear";
+        public static final String NUMBER_OF_SEATS ="seats";
 
         public static final Uri CarModelsUri = Uri.withAppendedPath(AUTHORITY_URI,"carModels");
         public static  final String TABLE_CARSMODEL = "carModels";
@@ -175,68 +174,55 @@ public class TakeGoConst {
         return contentValues;
 
     }
-    public static Cursor BranchListToCursor(List<Branch> branchs)    {
-        String[] columns = new String[]
+
+    public static Cursor BranchListToCursor() throws Exception {
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]
                 {
                         BranchConst.ID,
+                        BranchConst.NUMBER_PARKING,
                         BranchConst.CITY,
                         BranchConst.STREET,
                         BranchConst.NUM_APARTMENT,
-                        BranchConst.NUMBER_PARKING
-                };
-        MatrixCursor matrixCursor = new MatrixCursor(columns);
-        for(Branch item : branchs)
-        {
+                });
+        String temp = httpGet("http://tades.vlab.jct.ac.il/getBranches.php?");
+        JSONObject jsnobject = new JSONObject(temp);
+        JSONArray array = jsnobject.getJSONArray("branches");
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject obj = array.getJSONObject(i);
             matrixCursor.addRow(new Object[]
                     {
-                            item.getIdBranch(),
-                            item.getCity(),
-                            item.getStreet(),
-                            item.getNumApart(),
-                            item.getNumParking()
+                            obj.getInt(BranchConst.ID),
+                            obj.getString(BranchConst.NUMBER_PARKING),
+                            obj.getString(BranchConst.CITY),
+                            obj.getString(BranchConst.STREET),
+                            obj.getString(BranchConst.NUM_APARTMENT),
                     });
         }
         return matrixCursor;
     }
-    public static Cursor CarListToCursor() throws Exception {
-        MatrixCursor carsCursor= new MatrixCursor(new String[] {"branchID","modelID","kilometer","_ID"});
-        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/setCarsSql.php?")).getJSONArray("cars");
-        for(int i=0;i<array.length();i++)
-        {
-            JSONObject obj = array.getJSONObject(i);
-            carsCursor .addRow(new Object[]{
-                    obj.getInt("_idbranch"),
-                    obj.getInt("_idtypemodel"),
-                    obj.getInt("kilometer"),
-                    obj.getInt("_idcar")
-
-            });
-        }
-        return carsCursor;
-    }
-    public static Cursor CarModelListToCursor(List<CarModel> models) {
-        String[] columns = new String[]
+    public static Cursor CarModelListToCursor() throws Exception {
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]
                 {
                         CarModelConst.ID,
-                        CarModelConst.NAME,
                         CarModelConst.NAM_COMP,
+                        CarModelConst.NAME,
                         CarModelConst.ENGINE_CAP,
-                        CarModelConst.NUMBER_OF_SEATS,
-                        CarModelConst.GEERBOX
-                };
-
-        MatrixCursor matrixCursor = new MatrixCursor(columns);
-
-        for(CarModel m : models)
-        {
+                        CarModelConst.GEERBOX,
+                        CarModelConst.NUMBER_OF_SEATS
+                });
+        String temp = httpGet("http://tades.vlab.jct.ac.il/getCarModels.php?");
+        JSONObject jsnobject = new JSONObject(temp);
+        JSONArray array = jsnobject.getJSONArray("carModels");
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject obj = array.getJSONObject(i);
             matrixCursor.addRow(new Object[]
                     {
-                            m.getIdModel(),
-                            m.getNameModel(),
-                            m.getNameComp(),
-                            m.getEngineCap(),
-                            m.getNumberOfSeats(),
-                            m.getGeerbox()
+                            obj.getInt(CarModelConst.ID),
+                            obj.getString(CarModelConst.NAM_COMP),
+                            obj.getString(CarModelConst.NAME),
+                            obj.getInt(CarModelConst.ENGINE_CAP),
+                            obj.getString(CarModelConst.GEERBOX),
+                            obj.getInt(CarModelConst.NUMBER_OF_SEATS)
                     });
         }
         return matrixCursor;
@@ -269,6 +255,23 @@ public class TakeGoConst {
                     });
         }
         return matrixCursor;
+    }
+
+    public static Cursor CarListToCursor() throws Exception {
+        MatrixCursor carsCursor= new MatrixCursor(new String[] {"branchID","modelID","kilometer","_ID"});
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/setCarsSql.php?")).getJSONArray("cars");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            carsCursor .addRow(new Object[]{
+                    obj.getInt("_idbranch"),
+                    obj.getInt("_idtypemodel"),
+                    obj.getInt("kilometer"),
+                    obj.getInt("_idcar")
+
+            });
+        }
+        return carsCursor;
     }
 }
 
