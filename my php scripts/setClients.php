@@ -7,19 +7,19 @@ $dbname = "tades_";
 
 //create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-mysql_query("SET NAMES 'utf8'", $conn);
 
 //check connection
 if($conn->connected_error)
 {die("Connection failed:" .$conn->connected_error);}
 
-$branch =$_REQUEST["branchID"];
-$model =$_REQUEST["modelID"];
-$kilometer =$_REQUEST["kilometer"];
-$id =$_REQUEST["ID"];
-//$sql = "INSERT INTO 'tades_'.'cars' ('branchID', 'modelID', 'kilometer', 'ID') VALUES(\"$branch\", \"$model\", \"$kilometer\", \"$id\")";
-$sql = "INSERT INTO `cars` (`branchID`, `modelID`, `kilometer`, `ID`) VALUES('$branch','$model','$kilometer','$id')";
+$Fname =$_REQUEST["Fname"];
+$Lname =$_REQUEST["Lname"];
+$_id =$_REQUEST["_id"];
+$phoneNumber =$_REQUEST["phoneNumber"];
+$email =$_REQUEST["email"];
+$numCredit =$_REQUEST["numCredit"];
 
+$sql = "INSERT INTO `clients`(`Fname`, `Lname`, `_id`, `phoneNumber`, `email`, `numCredit`) VALUES ($Fname, $Lname, $_id, $phoneNumber, $email, $numCredit)";
 if($conn->query($sql) === TRUE)
 	{echo "New record created succesfully";}
 else {echo "Error: " . $sql . "<br>" . $conn->error;}
