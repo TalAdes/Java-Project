@@ -148,38 +148,6 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
                     return null;
                 }
             }.execute();
-//
-//                @Override
-//                protected Uri doInBackground(Void... voids) {
-//                    try {
-//                        return getContentResolver().insert(uri,contentValues);
-//                    } catch (Exception e) {
-//                        Toast.makeText(AddClientActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        return null;
-//                    }
-//                }
-//            Uri result = getContentResolver().insert(uri,contentValues);
-//            long id = ContentUris.parseId(result);
-//            new AsyncTask<Void,Void,Uri>() {
-//
-//                @Override
-//                protected Uri doInBackground(Void... voids) {
-//                    try {
-//                        return getContentResolver().insert(uri,contentValues);
-//                    } catch (Exception e) {
-//                        Toast.makeText(AddClientActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        return null;
-//                    }
-//                }
-//
-//                @Override
-//                protected void onPostExecute(Uri result) {
-//                    super.onPostExecute(result);
-//                    long id = ContentUris.parseId(result);
-//                    if (!result.equals("content://exception_clients")&& !result.equals("content://exception_insert")   && id > 0)
-//                        Toast.makeText(AddClientActivity.this, "The client include to dataBase!", Toast.LENGTH_SHORT).show();
-//                }
-//            }.execute();
         }
         catch (Exception e)
         {
