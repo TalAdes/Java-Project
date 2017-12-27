@@ -39,8 +39,8 @@ public class Lists_DBManager implements IDBManager {
        Client client = TakeGoConst.ContentValuesToClient(values);
         if(this.searchClient(values))
             throw new Exception("This client already exists!");
-
-        Clients.add(client);
+        TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setClients.php?",values.valueSet());
+        //Clients.add(client);
 
         return client.getId();
     }
