@@ -13,7 +13,6 @@ import com.example.liran.takeogo.models.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by liran on 08/11/2017.
  */
@@ -35,14 +34,9 @@ public class Lists_DBManager implements IDBManager {
         Users = new ArrayList<>();
     }
 
-    @Override    public long addClient(ContentValues values) throws Exception {
-       Client client = TakeGoConst.ContentValuesToClient(values);
-        if(this.searchClient(values))
-            throw new Exception("This client already exists!");
-        TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setClients.php?",values.valueSet());
-        //Clients.add(client);
-
-        return client.getId();
+    @Override    public String addClient(ContentValues values) {
+        String str = TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setClients.php?",values.valueSet());
+        return str;
     }
     @Override    public boolean removeClient(long id) {
         Client clientToremove = null;
@@ -81,14 +75,9 @@ public class Lists_DBManager implements IDBManager {
 
     }
 
-    @Override    public long addCarModel(ContentValues values) throws Exception {
-        CarModel model = TakeGoConst.ContentValuesToCarModel(values);
-        for (CarModel item : Models) {
-            if( item.getIdModel() == model.getIdModel())
-                throw new Exception("This model already exists! ");
-        }
-        Models.add(model);
-        return model.getIdModel();
+    @Override    public String addCarModel(ContentValues values) {
+        String str = TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setCarModels.php?",values.valueSet());
+        return str;
     }
     @Override    public boolean removeCarModle(long id) {
         CarModel modelToremove = null;
@@ -142,14 +131,9 @@ public class Lists_DBManager implements IDBManager {
         return false;
     }
 
-    @Override    public long addBranch(ContentValues values) throws Exception {
-        Branch branch = TakeGoConst.ContentValuesToBranch(values);
-        for(Branch item : Branchs){
-            if(item.getIdBranch() == branch.getIdBranch())
-                throw new Exception("This branch already exist!");
-        }
-        Branchs.add(branch);
-        return branch.getIdBranch();
+    @Override    public String addBranch(ContentValues values) {
+        String str = TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setBranches.php?",values.valueSet());
+        return str;
     }
     @Override    public boolean removeBranch(long id) {
         Branch branchToremove = null;

@@ -3,7 +3,6 @@ package com.example.liran.takeogo.controller.AddActivities;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -125,10 +124,9 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
     }
 
     private void addClient(){
-        final Uri uri = TakeGoConst.ClientConst.ClientsUri;
         final ContentValues contentValues = new ContentValues();
 
-        try {
+
             contentValues.put(TakeGoConst.ClientConst.FIRST_NAME,this.fnameEditText.getText().toString());
             contentValues.put(TakeGoConst.ClientConst.LAST_NAME,this.lnameEditText.getText().toString());
             contentValues.put(TakeGoConst.ClientConst.ID,Long.valueOf(this.idEditText.getText().toString()));
@@ -137,24 +135,24 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
             contentValues.put(TakeGoConst.ClientConst.NUM_CREDIT,Long.valueOf(this.numCreditEditText.getText().toString()));
 
 
-            new AsyncTask<Void,Void,Void>() {
+            new AsyncTask<Void,Void,String>() {
+                String str;
                 @Override
-                protected Void doInBackground(Void... voids) {
-                    try {
-                        db.addClient(contentValues);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                protected String doInBackground(Void... voids) {
+                        str = db.addClient(contentValues);
+                        return str;
+                }
+
+                @Override
+                protected void onPostExecute(String str) {
+                    if(str!="error")
+                    {
+                        Toast.makeText(AddClientActivity.this, str, Toast.LENGTH_SHORT).show();
+                        finish();
                     }
-                    return null;
+                    else Toast.makeText(AddClientActivity.this, "This client is already exists!", Toast.LENGTH_SHORT).show();
                 }
             }.execute();
-
-            finish();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(AddClientActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

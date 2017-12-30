@@ -47,59 +47,63 @@ public class TakeGoConst {
         }
         else return "";
     }
-    public static void httpPost(String url, Set<Map.Entry<String, Object>> params) throws Exception {
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String,Object> param : params)
-        {
-            if(postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(),"UTF-8"));
-            postData.append("=\"");
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()),"UTF-8"));
-            postData.append("\"");
+    public static String httpPost(String url, Set<Map.Entry<String, Object>> params) {
+        try{
+            StringBuilder postData = new StringBuilder();
+            for (Map.Entry<String,Object> param : params)
+            {
+                if(postData.length() != 0) postData.append('&');
+                postData.append(URLEncoder.encode(param.getKey(),"UTF-8"));
+                postData.append("=\"");
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()),"UTF-8"));
+                postData.append("\"");
+            }
+
+            String f= url.concat(String.valueOf(postData));
+
+
+            URL obj = new URL(f);
+            HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
+            OutputStream os = con.getOutputStream();
+            os.write(postData.toString().getBytes("UTF-8"));
+            os.flush();
+            os.close();
+
+
+
+            int responseCode = con.getResponseCode();
+            System.out.println("POST Response Code :: " + responseCode);
+
+            if (con.getResponseCode()==HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null)
+                    response.append(inputLine);
+                in.close();
+                return response.toString();
+            }
+            else return "";
         }
-
-        String f= url.concat(String.valueOf(postData));
-
-
-        URL obj = new URL(f);
-        //URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setDoOutput(true);
-        OutputStream os = con.getOutputStream();
-        os.write(postData.toString().getBytes("UTF-8"));
-        os.flush();
-        os.close();
-
-
-
-        int responseCode = con.getResponseCode();
-        System.out.println("POST Response Code :: " + responseCode);
-
-        if (con.getResponseCode()==HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null)
-                response.append(inputLine);
-            in.close();
-            //return response.toString();
-        }
-        //else return "";
+        catch (Exception ex)
+        {}
+        return "";
     }
 
     public static final String AUTHORITY = "com.lirantal.takego";
-    /**
-     * A content:// style uri to the authority for the contacts provider
-     */
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
+
     public static class BranchConst{
         public static final String ID = "_id";
         public static final String NUMBER_PARKING = "numParking";
         public static final String CITY = "city";
         public static final String STREET = "street";
         public static final String NUM_APARTMENT = "numApart";
+        public static final String IMAGE = "image";
+
 
         public static final Uri BranchUri = Uri.withAppendedPath(AUTHORITY_URI,"branches");
         public static final String TABLE_BRANCHES = "branches";
@@ -135,6 +139,7 @@ public class TakeGoConst {
         public static final Uri ClientsUri = Uri.withAppendedPath(AUTHORITY_URI,"clients");
         public static final String TABLE_CLIENTS = "clients";
     }
+
     public static Branch ContentValuesToBranch(ContentValues contentValues) {
         Branch branch = new Branch();
         branch.setIdBranch(contentValues.getAsLong(BranchConst.ID));
@@ -178,6 +183,7 @@ public class TakeGoConst {
         return client;
 
     }
+
     public static ContentValues BranchToContentValues(Branch branch)    {
         ContentValues contentValues = new ContentValues();
         contentValues.put(BranchConst.ID,branch.getIdBranch());
@@ -229,6 +235,7 @@ public class TakeGoConst {
                         BranchConst.CITY,
                         BranchConst.STREET,
                         BranchConst.NUM_APARTMENT,
+                        //BranchConst.IMAGE,
                 });
         String temp = httpGet("http://tades.vlab.jct.ac.il/getBranches.php?");
         JSONObject jsnobject = new JSONObject(temp);
@@ -242,6 +249,7 @@ public class TakeGoConst {
                             obj.getString(BranchConst.CITY),
                             obj.getString(BranchConst.STREET),
                             obj.getString(BranchConst.NUM_APARTMENT),
+                            //obj.get
                     });
         }
         return matrixCursor;
@@ -302,7 +310,6 @@ public class TakeGoConst {
         }
         return matrixCursor;
     }
-
     public static Cursor CarListToCursor() throws Exception {
         MatrixCursor carsCursor= new MatrixCursor(new String[] {"branchID","modelID","kilometer","_ID"});
         JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/setCarsSql.php?")).getJSONArray("cars");

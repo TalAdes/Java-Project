@@ -3,7 +3,6 @@ package com.example.liran.takeogo.controller.AddActivities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +41,6 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_branch);
         findViews();
-        IDBManager db = DBManagerFactory.getMnager();
     }
 
     private void findViews() {
@@ -108,8 +105,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
 
     }
 
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         if ( v == addBranchButton ) {
             addBranch();
         }
@@ -120,49 +116,31 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     }
 
     private void addBranch(){
-        final Uri uri = TakeGoConst.BranchConst.BranchUri;
+        final IDBManager db = DBManagerFactory.getMnager();
         final ContentValues contentValues = new ContentValues();
 
-        try {
-            contentValues.put(TakeGoConst.BranchConst.ID,Long.valueOf(this.idBranchEditText.getText().toString()));
+        contentValues.put(TakeGoConst.BranchConst.ID,Long.valueOf(this.idBranchEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.CITY,this.cityEditText.getText().toString());
             contentValues.put(TakeGoConst.BranchConst.STREET,this.streetEditText.getText().toString());
             contentValues.put(TakeGoConst.BranchConst.NUM_APARTMENT,Integer.valueOf(this.numApartEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.NUMBER_PARKING,Integer.valueOf(this.numParkingEditText.getText().toString()));
 
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(AddBranchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-
-        new AsyncTask<Void,Void,Uri>()
-        {
-            Exception error;
+        new AsyncTask<Void,Void,String>() {
+            String str;
             @Override
-            protected Uri doInBackground(Void... voids)
-            {
-                try
-                {
-                    return getContentResolver().insert(uri,contentValues);
-                }
-                catch (Exception e)
-                {
-                    error = e;
-                    return null;
-                }
+            protected String doInBackground(Void... voids) {
+                str = db.addBranch(contentValues);
+                return str;
             }
 
             @Override
-            protected void onPostExecute(Uri result)
-            {
-                Log.i("Kdfd",result.toString());
-                super.onPostExecute(result);
-                long id = ContentUris.parseId(result);
-                if(!result.equals("content://exception_branches") && id > 0)
-                    Toast.makeText(AddBranchActivity.this,"The Branch include to dataBase!",Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(AddBranchActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+            protected void onPostExecute(String str) {
+                if(str!="error")
+                {
+                    Toast.makeText(AddBranchActivity.this, str, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else Toast.makeText(AddBranchActivity.this, "This client is already exists!", Toast.LENGTH_SHORT).show();
             }
         }.execute();
     }

@@ -12,17 +12,16 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn->connected_error)
 {die("Connection failed:" .$conn->connected_error);}
 
-$Fname =$_REQUEST["Fname"];
-$Lname =$_REQUEST["Lname"];
 $_id =$_REQUEST["_id"];
-$phoneNumber =$_REQUEST["phoneNumber"];
-$email =$_REQUEST["email"];
-$numCredit =$_REQUEST["numCredit"];
+$company =$_REQUEST["company"];
+$model =$_REQUEST["model"];
+$engine =$_REQUEST["engine"];
+$gear =$_REQUEST["gear"];
+$seats =$_REQUEST["seats"];
 
-$sql = "INSERT INTO `clients`(`Fname`, `Lname`, `_id`, `phoneNumber`, `email`, `numCredit`) VALUES ($Fname, $Lname, $_id, $phoneNumber, $email, $numCredit)";
+$sql = "INSERT INTO `carModels`(`_id`, `company`, `model`, `engine`, `gear`, `seats`) VALUES ($_id, $company, $model, $engine, $gear, $seats)";
 if($conn->query($sql) === TRUE)
 	{echo "New record created succesfully";}
-//else {echo "Error: " . $sql . "<br>" . $conn->error;}
 else {echo "error";}
 $conn->close(); 
 		
