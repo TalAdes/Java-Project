@@ -69,6 +69,7 @@ public class AddCarModel extends Activity implements View.OnClickListener {
             contentValues.put(TakeGoConst.CarModelConst.ENGINE_CAP,engineValue);
             contentValues.put(TakeGoConst.CarModelConst.GEERBOX,GearboxSpinner.getSelectedItem().toString());
             contentValues.put(TakeGoConst.CarModelConst.NUMBER_OF_SEATS,seatsNumber);
+            Toast.makeText(this,ModelName.getText().toString(),Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
