@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Telephony;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,14 +22,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.bumptech.glide.Glide;
+import com.kosalgeek.android.photoutil.CameraPhoto;
+import com.kosalgeek.android.photoutil.GalleryPhoto;
+import com.kosalgeek.android.photoutil.ImageLoader;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
+import com.kosalgeek.android.photoutil.ImageLoader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import java.io.ByteArrayOutputStream;
 
 public class AddBranchActivity extends Activity implements View.OnClickListener {
 
     Integer REQUEST_CAMERA=1,SELECT_FILE=0;
+    CameraPhoto cameraPhoto;
+    GalleryPhoto galleryPhoto;
 
     private EditText cityEditText;
     private EditText streetEditText;
@@ -59,6 +73,8 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
 
         addImageButton.setOnClickListener(this);
         addBranchButton.setOnClickListener( this );
+        cameraPhoto = new CameraPhoto(getApplicationContext());
+        galleryPhoto = new GalleryPhoto(getApplicationContext());
     }
 
     private void selectImage(){
@@ -71,10 +87,12 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
             public void onClick(DialogInterface dialog, int i) {
                 if(items[i].equals("Camera")){
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent,REQUEST_CAMERA);
+                        startActivityForResult(intent,REQUEST_CAMERA);
+
+
                 }
                 else if(items[i].equals("Gallery")){
-                    Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                   Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent,SELECT_FILE);
 
@@ -97,6 +115,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
                 Bundle bundle = data.getExtras();
                 final Bitmap bmp = (Bitmap) bundle.get("data");
                 this.ivimage.setImageBitmap(bmp);
+
             }
             else if(requestCode == SELECT_FILE){
                 Uri selectImageUri = data.getData();
@@ -115,6 +134,8 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         }
         if(v==addImageButton){
             selectImage();
+
+
         }
 
     }
@@ -156,7 +177,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
             @Override
             protected void onPostExecute(Uri result)
             {
-                Log.i("Kdfd",result.toString());
+               // Log.i("Kdfd",result.toString());
                 super.onPostExecute(result);
                 long id = ContentUris.parseId(result);
                 if(!result.equals("content://exception_branches") && id > 0)
