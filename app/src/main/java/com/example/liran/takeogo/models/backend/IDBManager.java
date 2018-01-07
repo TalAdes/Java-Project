@@ -11,12 +11,12 @@ import com.example.liran.takeogo.models.entities.User;
 
 public interface IDBManager {
 
-    long addClient(ContentValues values) throws Exception;
+    String addClient(ContentValues values);
     boolean removeClient(long id);
     boolean updateClient(ContentValues values);
     boolean searchClient(ContentValues values);
 
-    long addCarModel(ContentValues values) throws Exception;
+    String addCarModel(ContentValues values);
     boolean removeCarModle(long id);
     boolean updateCarModel(ContentValues values);
 
@@ -24,7 +24,7 @@ public interface IDBManager {
     boolean removeCar(long id);
     boolean updateCar(ContentValues values);
 
-    long addBranch(ContentValues values) throws Exception;
+    String addBranch(ContentValues values);
     boolean removeBranch(long id);
     boolean updateBranch(ContentValues values);
 

@@ -45,5 +45,6 @@ public class CarModelCursorAdapter extends CursorAdapter {
         gearboxTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.GEERBOX)));
         numberOfSeatsTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NUMBER_OF_SEATS)));
         modelNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME)));
+
     }
 }

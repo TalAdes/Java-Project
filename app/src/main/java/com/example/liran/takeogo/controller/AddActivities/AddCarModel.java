@@ -1,14 +1,13 @@
 package com.example.liran.takeogo.controller.AddActivities;
 
 import android.app.Activity;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.os.AsyncTask;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,7 +30,6 @@ public class AddCarModel extends Activity implements View.OnClickListener {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car_models);
-        IDBManager db = DBManagerFactory.getMnager();
         findViews();
     }
 
@@ -56,6 +54,8 @@ public class AddCarModel extends Activity implements View.OnClickListener {
 
     private void addCarModel() {
         final Uri uri = TakeGoConst.CarModelConst.CarModelsUri;
+        final IDBManager db = DBManagerFactory.getMnager();
+
         final ContentValues contentValues = new ContentValues();
         try
         {
@@ -64,39 +64,34 @@ public class AddCarModel extends Activity implements View.OnClickListener {
             int seatsNumber=Integer.valueOf(SeatsNumber.getText().toString());
 
             contentValues.put(TakeGoConst.CarModelConst.ID,modelNum);
-            contentValues.put(TakeGoConst.CarModelConst.ENGINE_CAP,engineValue);
-            contentValues.put(TakeGoConst.CarModelConst.NUMBER_OF_SEATS,seatsNumber);
             contentValues.put(TakeGoConst.CarModelConst.NAM_COMP,CompanyName.getText().toString());
             contentValues.put(TakeGoConst.CarModelConst.NAME,ModelName.getText().toString());
+            contentValues.put(TakeGoConst.CarModelConst.ENGINE_CAP,engineValue);
             contentValues.put(TakeGoConst.CarModelConst.GEERBOX,GearboxSpinner.getSelectedItem().toString());
-
+            contentValues.put(TakeGoConst.CarModelConst.NUMBER_OF_SEATS,seatsNumber);
+            Toast.makeText(this,ModelName.getText().toString(),Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
             Toast.makeText(AddCarModel.this,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
 
-        new AsyncTask<Void,Void,Uri>() {
-            Exception error;
-
+        new AsyncTask<Void,Void,String>() {
+            String str;
             @Override
-            protected Uri doInBackground(Void... voids) {
-                try {
-                    return getContentResolver().insert(uri,contentValues);
-                } catch (Exception e) {
-                    error = e;
-                    return null;
-                }
+            protected String doInBackground(Void... voids) {
+                str = db.addCarModel(contentValues);
+                return str;
             }
 
             @Override
-            protected void onPostExecute(Uri result) {
-                super.onPostExecute(result);
-                long id = ContentUris.parseId(result);
-                if (!result.equals("content://exception_carModel") && id > 0)
-                    Toast.makeText(AddCarModel.this, "The car model include to dataBase!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(AddCarModel.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            protected void onPostExecute(String str) {
+                if(str!="error")
+                {
+                    Toast.makeText(AddCarModel.this, str, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else Toast.makeText(AddCarModel.this, "This client is already exists!", Toast.LENGTH_SHORT).show();
             }
         }.execute();
 

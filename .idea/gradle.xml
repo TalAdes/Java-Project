@@ -8,7 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/PhotoUtil" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/glide-3.6.0" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

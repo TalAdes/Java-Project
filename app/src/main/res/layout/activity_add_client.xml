@@ -8,63 +8,175 @@
     tools:context="com.example.liran.takeogo.controller.AddActivities.AddClientActivity">
 
 
-    <EditText
-        android:id="@+id/fnameEditText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="שם פרטי"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/lnameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="שם משפחה"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/fnameEditText"
+            android:layout_width="625dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="אותיות באנגלית בלבד"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/idEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="מספר זהות"
-        android:ems="10"
-        android:inputType="number" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="שם פרטי"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <EditText
-        android:id="@+id/phoneNumEditText"
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/valid_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="טלפון"
-        android:inputType="phone" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/lnameEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="אותיות באנגלית בלבד"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="שם משפחה"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/valid_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/idEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="מספר תז כולל ספרת ביקורת"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="מספר זהות"
+            android:inputType="textPersonName"
+            android:text="מספר זהות"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/id_valid_TW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/phoneNumEditText"
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="מספר ישראלי המורכב מספרות בלבד"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="מספר טלפון"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            tools:text="מספר טלפון" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/phone_valid_TW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/emailEditText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="דואר אלקטרוני"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="example@xx.yy"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="דואר אלקטרוני"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/email_valid_TW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/numCreditEditText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="מספר כרטיס אשראי"
-        android:ems="10"
-        android:inputType="number" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/numCreditEditText"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="מספר כרטיס אשראי בין לאומי בלבד"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="מספר אשראי"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/credit_card_valid_TW"

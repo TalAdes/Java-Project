@@ -155,7 +155,7 @@ public class TakeGoContentProvider extends ContentProvider {
         switch (lastName) {
             case "branches":
                 try {
-                    id = db.addBranch(values);
+                    //id = db.addBranch(values);
                     return ContentUris.withAppendedId(uri, id);
                 } catch (Exception e) {
                     return Uri.parse("content://exception_branches");
@@ -164,7 +164,7 @@ public class TakeGoContentProvider extends ContentProvider {
 
             case "cars":
                 try {
-                    id = db.addCar(values);
+                    //id = db.addCar(values);
                 } catch (Exception e) {
                     return Uri.parse("content://exception_cars");
                 }
@@ -173,7 +173,7 @@ public class TakeGoContentProvider extends ContentProvider {
 
             case "carModels":
                 try {
-                    id = db.addCarModel(values);
+                    //id = db.addCarModel(values);
                 } catch (Exception e) {
                     return Uri.parse("content://exception_carModel");
                 }
@@ -182,7 +182,7 @@ public class TakeGoContentProvider extends ContentProvider {
 
             case "clients":
                 try {
-                    id = db.addClient(values);
+                    //id = db.addClient(values);
                 } catch (Exception e) {
                     return Uri.parse("content://exception_clients");
                 }

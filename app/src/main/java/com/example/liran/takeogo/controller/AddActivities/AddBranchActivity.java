@@ -3,11 +3,11 @@ package com.example.liran.takeogo.controller.AddActivities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,8 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-
 import com.bumptech.glide.Glide;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
@@ -57,7 +55,6 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_branch);
         findViews();
-        IDBManager db = DBManagerFactory.getMnager();
     }
 
     private void findViews() {
@@ -109,81 +106,77 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
         super.onActivityResult(requestCode,resultCode,data);
-
         if(resultCode==Activity.RESULT_OK){
             if(requestCode == REQUEST_CAMERA){
                 Bundle bundle = data.getExtras();
                 final Bitmap bmp = (Bitmap) bundle.get("data");
                 this.ivimage.setImageBitmap(bmp);
-
             }
             else if(requestCode == SELECT_FILE){
                 Uri selectImageUri = data.getData();
                 this.ivimage.setImageURI(selectImageUri);
             }
-
         }
-
-
     }
 
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         if ( v == addBranchButton ) {
             addBranch();
         }
         if(v==addImageButton){
             selectImage();
-
-
         }
 
     }
 
+    private String BmpToString(Bitmap bp)
+    {
+        ByteArrayOutputStream streme = new ByteArrayOutputStream();
+        bp.compress(Bitmap.CompressFormat.PNG,90,streme);
+        byte [] arr = streme.toByteArray();
+        String image_str = Base64.encodeToString(arr,Base64.DEFAULT);
+        return image_str;
+    }
+
     private void addBranch(){
-        final Uri uri = TakeGoConst.BranchConst.BranchUri;
+        final IDBManager db = DBManagerFactory.getMnager();
         final ContentValues contentValues = new ContentValues();
 
-        try {
             contentValues.put(TakeGoConst.BranchConst.ID,Long.valueOf(this.idBranchEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.CITY,this.cityEditText.getText().toString());
             contentValues.put(TakeGoConst.BranchConst.STREET,this.streetEditText.getText().toString());
             contentValues.put(TakeGoConst.BranchConst.NUM_APARTMENT,Integer.valueOf(this.numApartEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.NUMBER_PARKING,Integer.valueOf(this.numParkingEditText.getText().toString()));
 
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(AddBranchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+        new AsyncTask<Void,Void,String>() {
+            String str;
 
-        new AsyncTask<Void,Void,Uri>()
-        {
-            Exception error;
             @Override
-            protected Uri doInBackground(Void... voids)
-            {
-                try
-                {
-                    return getContentResolver().insert(uri,contentValues);
-                }
-                catch (Exception e)
-                {
-                    error = e;
-                    return null;
-                }
+            protected String doInBackground(Void... voids) {
+                Bitmap bmp = ((BitmapDrawable)ivimage.getDrawable()).getBitmap();
+                String ImageStr = BmpToString(bmp);
+                contentValues.put(TakeGoConst.BranchConst.IMAGE,ImageStr.toString());
+                str = db.addBranch(contentValues);
+                return str;
             }
 
-            @Override
+           /* @Override
             protected void onPostExecute(Uri result)
             {
-               // Log.i("Kdfd",result.toString());
                 super.onPostExecute(result);
                 long id = ContentUris.parseId(result);
                 if(!result.equals("content://exception_branches") && id > 0)
                     Toast.makeText(AddBranchActivity.this,"The Branch include to dataBase!",Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(AddBranchActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddBranchActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();}*/
+            @Override
+            protected void onPostExecute(String str) {
+                if(str!="error")
+                {
+                    Toast.makeText(AddBranchActivity.this, str, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else Toast.makeText(AddBranchActivity.this, "This client is already exists!", Toast.LENGTH_SHORT).show();
             }
         }.execute();
     }

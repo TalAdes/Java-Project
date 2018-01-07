@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.liran.takeogo.controller.AddActivities.AddBranchActivity">
 
-
-
     <EditText
         android:id="@+id/cityEditText"
         android:layout_width="match_parent"
