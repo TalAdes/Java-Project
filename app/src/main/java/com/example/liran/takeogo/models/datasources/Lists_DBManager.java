@@ -2,6 +2,7 @@ package com.example.liran.takeogo.models.datasources;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 
 import com.example.liran.takeogo.models.backend.IDBManager;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
@@ -173,11 +174,60 @@ public class Lists_DBManager implements IDBManager {
     //@Override public List<Client> getClients() { return Clients;}
 
     @Override    public Cursor getCarModels() throws Exception {return TakeGoConst.CarModelListToCursor();}
+    @Override public Cursor getCarByModels(String selected) throws Exception {
+        Cursor allCars = getCars();
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]
+                {
+                        TakeGoConst.CarConst.ID_BRANCH,
+                        TakeGoConst.CarConst.ID_TYPE_MODEL,
+                        TakeGoConst.CarConst.KILLOMETER,
+                        TakeGoConst.CarConst.ID_CAR,
+                });
+
+        allCars.moveToFirst();
+        while (!allCars.isAfterLast())
+        {
+            if(selected == modelsCodeToName(allCars.getInt(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_TYPE_MODEL))))
+                matrixCursor.addRow(new Object[]
+                        {
+                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_BRANCH)),
+                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_TYPE_MODEL)),
+                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.KILLOMETER)),
+                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_CAR))
+                        });
+            allCars.moveToNext();
+        }
+        return matrixCursor;
+    }
+    @Override public List<String> getModelName() throws Exception {
+        ArrayList<String> modelNames = new ArrayList<>();
+        Cursor models = getCarModels();
+
+        models.moveToFirst();
+        while (!models.isAfterLast())
+        {
+            String name = models.getString(models.getColumnIndex(TakeGoConst.CarModelConst.NAME));
+            if(!modelNames.contains(name))
+                modelNames.add(name);
+            models.moveToNext();
+        }
+        return modelNames;
+    }
+    private String modelsCodeToName(int code) throws Exception {
+        Cursor models = getCarModels();
+        models.moveToFirst();
+        while (!models.isAfterLast())
+        {
+            if(code == models.getInt(models.getColumnIndexOrThrow(TakeGoConst.CarModelConst.ID)))
+                return models.getString(models.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME));
+            models.moveToNext();
+        }
+        return "";
+    }
+
+
     @Override    public Cursor getClients() throws Exception {return TakeGoConst.ClientListToCursor();}
     @Override    public Cursor getBranches() throws Exception {return TakeGoConst.BranchListToCursor();}
-    @Override    public Cursor getCars() {
-        return null;
-
-    }
+    @Override    public Cursor getCars() throws Exception {return TakeGoConst.CarListToCursor();}
     //@Override    public Cursor getCars() {return TakeGoConst.CarListToCursor(Cars);}
 }

@@ -5,6 +5,8 @@ import android.database.Cursor;
 
 import com.example.liran.takeogo.models.entities.User;
 
+import java.util.List;
+
 /**
  * Created by liran on 08/11/2017.
  */
@@ -31,9 +33,13 @@ public interface IDBManager {
     void addUser(User user) throws Exception;
 
     Cursor getClients() throws Exception;
-    Cursor getCars();
+    Cursor getCars() throws Exception;
     Cursor getBranches() throws Exception;
     Cursor getCarModels() throws Exception;
+
+    Cursor getCarByModels(String selected) throws Exception;
+
+    List<String> getModelName() throws Exception;
     //List<CarModel> getCarModels();
     //List<Client> getClients();
     //List<Branch> getBranches();

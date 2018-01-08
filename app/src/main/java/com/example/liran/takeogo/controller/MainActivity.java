@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-             if ( v == addCarButton )       addCarButton();
+        if ( v == addCarButton )       addCarButton();
         else if ( v == addModelCarButton )  addCarModelButton();
         else if ( v == addClientButton )    addClientButton();
         else if ( v == addBranchButton )    addBranchButton();

@@ -92,7 +92,11 @@ public class TakeGoContentProvider extends ContentProvider {
                 }
 
             case "cars":
-                return db.getCars();
+                try {
+                    return db.getCars();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             case "carModels":
                 try {
