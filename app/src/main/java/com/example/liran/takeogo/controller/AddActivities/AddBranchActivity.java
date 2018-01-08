@@ -37,9 +37,8 @@ import java.io.ByteArrayOutputStream;
 
 public class AddBranchActivity extends Activity implements View.OnClickListener {
 
-    Integer REQUEST_CAMERA=1,SELECT_FILE=0;
-    CameraPhoto cameraPhoto;
-    GalleryPhoto galleryPhoto;
+    Integer SELECT_FILE=0;
+
 
     private EditText cityEditText;
     private EditText streetEditText;
@@ -70,29 +69,20 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
 
         addImageButton.setOnClickListener(this);
         addBranchButton.setOnClickListener( this );
-        cameraPhoto = new CameraPhoto(getApplicationContext());
-        galleryPhoto = new GalleryPhoto(getApplicationContext());
     }
 
     private void selectImage(){
-        final CharSequence[] items = {"Camera","Gallery" ,"Cancel"};
+        final CharSequence[] items = {"Gallery" ,"Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(AddBranchActivity.this);
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                if(items[i].equals("Camera")){
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,REQUEST_CAMERA);
-
-
-                }
-                else if(items[i].equals("Gallery")){
+                 if(items[i].equals("Gallery")){
                    Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent,SELECT_FILE);
-
                 }
                 else if(items[i].equals("Cancel")){
                     dialog.dismiss();
@@ -107,12 +97,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     {
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode==Activity.RESULT_OK){
-            if(requestCode == REQUEST_CAMERA){
-                Bundle bundle = data.getExtras();
-                final Bitmap bmp = (Bitmap) bundle.get("data");
-                this.ivimage.setImageBitmap(bmp);
-            }
-            else if(requestCode == SELECT_FILE){
+            if(requestCode == SELECT_FILE){
                 Uri selectImageUri = data.getData();
                 this.ivimage.setImageURI(selectImageUri);
             }
@@ -160,15 +145,6 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
                 return str;
             }
 
-           /* @Override
-            protected void onPostExecute(Uri result)
-            {
-                super.onPostExecute(result);
-                long id = ContentUris.parseId(result);
-                if(!result.equals("content://exception_branches") && id > 0)
-                    Toast.makeText(AddBranchActivity.this,"The Branch include to dataBase!",Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(AddBranchActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();}*/
             @Override
             protected void onPostExecute(String str) {
                 if(str!="error")
