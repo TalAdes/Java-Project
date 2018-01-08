@@ -1,101 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    >
+    android:layout_height="200dp">
 
     <ImageView
         android:id="@+id/carImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/camera_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="154dp"
+        android:src="@drawable/camera_icon" />
 
-    <TextView
-        android:id="@+id/modelD_TB"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="modelD_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237" />
+    <LinearLayout
+        android:layout_width="106dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/companyName_TB"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="companyName_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        <TextView
+            android:id="@+id/IdModelT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="TextView"
+            tools:text="ID Model:" />
 
-    <TextView
-        android:id="@+id/engineCapacity_TB"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="engineCapacity_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502" />
+        <TextView
+            android:id="@+id/nameCampT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text=" Company:" />
 
-    <TextView
-        android:id="@+id/gearbox_TB"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="gearbox_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502" />
+        <TextView
+            android:id="@+id/ModelT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Model:" />
 
-    <TextView
-        android:id="@+id/numberOfSeats_TB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="numberOfSeats_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.988"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.856" />
+        <TextView
+            android:id="@+id/engineCapT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Engine capacity:" />
 
-    <TextView
-        android:id="@+id/modelName_TB"
-        android:layout_width="102dp"
-        android:layout_height="22dp"
-        android:inputType="textPersonName"
-        android:text="modelName_TB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
+        <TextView
+            android:id="@+id/geerboxT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GeerBox:" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/numberOfseatsT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            tools:text="Number of seats:" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:paddingRight="15dp"
+                app:srcCompat="@drawable/ic_star" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/modelD_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:inputType="textPersonName"
+            android:text="modelD_TB" />
+
+        <TextView
+            android:id="@+id/companyName_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="companyName_TB" />
+
+        <TextView
+            android:id="@+id/modelName_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="modelName_TB" />
+
+        <TextView
+            android:id="@+id/engineCapacity_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="engineCapacity_TB" />
+
+        <TextView
+            android:id="@+id/gearbox_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="gearbox_TB" />
+
+        <TextView
+            android:id="@+id/numberOfSeats_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="textPersonName"
+            android:text="numberOfSeats_TB" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_car_key" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

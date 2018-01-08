@@ -52,13 +52,11 @@
         android:layout_height="57dp"
         android:background="@android:color/background_light"
         android:gravity="center"
-
         android:orientation="vertical"
         android:padding="5dp">
 
         <ImageButton
             android:id="@+id/imageButton"
-            style="@android:style/Widget.DeviceDefault.ImageButton"
             android:layout_width="43dp"
             android:layout_height="83dp"
             android:layout_gravity="right"
