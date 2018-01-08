@@ -168,12 +168,7 @@ public class Lists_DBManager implements IDBManager {
     }
 
 
-    //@Override public List<Branch> getBranches() { return Branchs;}
-    //@Override public List<Car> getCars() { return Cars;}
-    //@Override public List<CarModel> getCarModels() { return Models;}
-    //@Override public List<Client> getClients() { return Clients;}
 
-    @Override    public Cursor getCarModels() throws Exception {return TakeGoConst.CarModelListToCursor();}
     @Override public Cursor getCarByModels(String selected) throws Exception {
         Cursor allCars = getCars();
         MatrixCursor matrixCursor = new MatrixCursor(new String[]
@@ -182,18 +177,20 @@ public class Lists_DBManager implements IDBManager {
                         TakeGoConst.CarConst.ID_TYPE_MODEL,
                         TakeGoConst.CarConst.KILLOMETER,
                         TakeGoConst.CarConst.ID_CAR,
+                        TakeGoConst.CarConst.MODEL_NAME,
                 });
 
         allCars.moveToFirst();
         while (!allCars.isAfterLast())
         {
-            if(selected == modelsCodeToName(allCars.getInt(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_TYPE_MODEL))))
+            if(selected.equals(allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.MODEL_NAME))))
                 matrixCursor.addRow(new Object[]
                         {
-                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_BRANCH)),
-                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_TYPE_MODEL)),
-                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.KILLOMETER)),
-                                allCars.getInt(Integer.parseInt(TakeGoConst.CarConst.ID_CAR))
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_BRANCH)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_TYPE_MODEL)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.KILLOMETER)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_CAR)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.MODEL_NAME))
                         });
             allCars.moveToNext();
         }
@@ -226,8 +223,8 @@ public class Lists_DBManager implements IDBManager {
     }
 
 
-    @Override    public Cursor getClients() throws Exception {return TakeGoConst.ClientListToCursor();}
-    @Override    public Cursor getBranches() throws Exception {return TakeGoConst.BranchListToCursor();}
-    @Override    public Cursor getCars() throws Exception {return TakeGoConst.CarListToCursor();}
-    //@Override    public Cursor getCars() {return TakeGoConst.CarListToCursor(Cars);}
+    @Override    public Cursor getClients()     throws Exception    {return TakeGoConst.ClientListToCursor();}
+    @Override    public Cursor getBranches()    throws Exception   {return TakeGoConst.BranchListToCursor();}
+    @Override    public Cursor getCars()        throws Exception       {return TakeGoConst.CarListToCursor();}
+    @Override    public Cursor getCarModels()   throws Exception  {return TakeGoConst.CarModelListToCursor();}
 }

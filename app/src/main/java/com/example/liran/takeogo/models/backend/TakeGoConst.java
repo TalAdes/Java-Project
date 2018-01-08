@@ -111,6 +111,7 @@ public class TakeGoConst {
     public static class CarConst{
         public static final String ID_BRANCH = "branchID";
         public static final String ID_TYPE_MODEL = "modelID";
+        public static final String MODEL_NAME = "modelName";
         public static final String KILLOMETER = "kilometer";
         public static final String ID_CAR = "_ID";
 
@@ -312,7 +313,14 @@ public class TakeGoConst {
         return matrixCursor;
     }
     public static Cursor CarListToCursor() throws Exception {
-        MatrixCursor carsCursor= new MatrixCursor(new String[] {"branchID","modelID","kilometer","_ID"});
+        MatrixCursor carsCursor= new MatrixCursor(new String[]
+                {
+                        CarConst.ID_BRANCH,
+                        CarConst.ID_TYPE_MODEL,
+                        CarConst.KILLOMETER,
+                        CarConst.ID_CAR,
+                        CarConst.MODEL_NAME,
+                });
         JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getCars.php?")).getJSONArray("cars");
         for(int i=0;i<array.length();i++)
         {
@@ -321,7 +329,8 @@ public class TakeGoConst {
                     obj.getInt(TakeGoConst.CarConst.ID_BRANCH),
                     obj.getInt(CarConst.ID_TYPE_MODEL),
                     obj.getInt(CarConst.KILLOMETER),
-                    obj.getInt(CarConst.ID_CAR)
+                    obj.getInt(CarConst.ID_CAR),
+                    obj.getString(CarConst.MODEL_NAME)
             });
         }
         return carsCursor;

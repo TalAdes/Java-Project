@@ -29,12 +29,12 @@ import java.io.ByteArrayOutputStream;
 
 public class AddBranchActivity extends Activity implements View.OnClickListener {
 
-<<<<<<< HEAD
-    Integer REQUEST_CAMERA=1,SELECT_FILE=0;
-=======
+//<<<<<<< HEAD
     Integer SELECT_FILE=0;
+    //Integer REQUEST_CAMERA=1,SELECT_FILE=0;
+//=======
 
->>>>>>> c33f7e14c09953403dc8eb746e6c5d45a35a9c91
+//>>>>>>> c33f7e14c09953403dc8eb746e6c5d45a35a9c91
 
     private EditText cityEditText;
     private EditText streetEditText;

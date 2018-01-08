@@ -90,6 +90,7 @@ public class ShowCar extends Activity {
                 }
                 @Override
                 protected void onPostExecute(Cursor result) {
+                    Toast.makeText(ShowCar.this,"before succes :)",Toast.LENGTH_SHORT);
                     listView.setAdapter(new CarModelCursorAdapter(ShowCar.this,result,0 ));
                     Toast.makeText(ShowCar.this,"succes :)",Toast.LENGTH_SHORT);
                 }
