@@ -43,12 +43,12 @@ public class ClientAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = View.inflate(context, R.layout.client_templte, null);
 
-        TextView idTB = (TextView) convertView.findViewById(R.id.client_id_TB);
-        TextView fnameTB = (TextView) convertView.findViewById(R.id.fname_TB);
-        TextView lnameTB = (TextView) convertView.findViewById(R.id.lname_TB);
-        TextView phoneTB = (TextView) convertView.findViewById(R.id.phoneNum_TB);
-        TextView emailTB = (TextView) convertView.findViewById(R.id.email_TB);
-        TextView creditTB = (TextView) convertView.findViewById(R.id.numCredit_TB);
+        TextView idTB = (TextView) convertView.findViewById(R.id.client_id_TB1);
+        TextView fnameTB = (TextView) convertView.findViewById(R.id.fname_TB1);
+        TextView lnameTB = (TextView) convertView.findViewById(R.id.lname_TB1);
+        TextView phoneTB = (TextView) convertView.findViewById(R.id.phoneNum_TB1);
+        TextView emailTB = (TextView) convertView.findViewById(R.id.email_TB1);
+        TextView creditTB = (TextView) convertView.findViewById(R.id.numCredit_TB1);
 
         idTB.setText(((Long)clients.get(position).getId()).toString());
         fnameTB.setText(clients.get(position).getFname());

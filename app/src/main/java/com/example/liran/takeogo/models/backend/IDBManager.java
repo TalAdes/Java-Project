@@ -5,6 +5,7 @@ import android.database.Cursor;
 
 import com.example.liran.takeogo.models.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +41,10 @@ public interface IDBManager {
     Cursor getCarByModels(String selected) throws Exception;
 
     List<String> getModelName() throws Exception;
+
+    ArrayList<String> getAllCompanies();
+
+    ArrayList<String> getModelsByCompany(CharSequence s);
     //List<CarModel> getCarModels();
     //List<Client> getClients();
     //List<Branch> getBranches();

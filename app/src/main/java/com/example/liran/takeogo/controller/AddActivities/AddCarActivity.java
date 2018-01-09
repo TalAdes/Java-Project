@@ -1,46 +1,98 @@
 package com.example.liran.takeogo.controller.AddActivities;
 
 import android.app.Activity;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.net.Uri;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
-import com.example.liran.takeogo.models.backend.TakeGoConst;
+
+import java.util.ArrayList;
 
 
 public class AddCarActivity extends Activity implements View.OnClickListener {
-    private EditText idBranchCar;
-    private EditText idCarModel;
     private EditText killometer;
     private EditText idCar;
     private Button addCarButton;
-
-
-
+    private AutoCompleteTextView CompanyAutoCompleteTextView,ModelAutoCompleteTextView,ModelNumAutoCompleteTextView,BranchAutoCompleteTextView;
+    private IDBManager db;
+    private String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
+        db = DBManagerFactory.getMnager();
         findViews();
-        IDBManager db = DBManagerFactory.getMnager();
     }
 
     private void findViews() {
-        idBranchCar = (EditText)findViewById( R.id.idBranchCar );
-        idCarModel = (EditText)findViewById( R.id.idCarModel );
         killometer = (EditText)findViewById( R.id.killometer );
         idCar = (EditText)findViewById( R.id.idCar );
+        CompanyAutoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.CompanyAutoCompleteTextView);
+        ModelAutoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.ModelAutoCompleteTextView);
+        ModelNumAutoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.ModelNumAutoCompleteTextView);
+        BranchAutoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.BranchAutoCompleteTextView);
         addCarButton = (Button)findViewById( R.id.addCarButton );
 
+        ModelAutoCompleteTextView.setEnabled(false);
+        ModelNumAutoCompleteTextView.setEnabled(false);
+
+        CompanyAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
+
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                s = CompanyAutoCompleteTextView.getText().toString();
+                if(!db.getAllCompanies().contains(s))
+                {
+                    ModelAutoCompleteTextView.setEnabled(false);
+                    ModelAutoCompleteTextView.setTextColor(Color.RED);
+                }
+                else
+                {
+                    ModelAutoCompleteTextView.setTextColor(Color.BLACK);
+                    ArrayList<String> models = db.getModelsByCompany(s);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,models);
+                    ModelAutoCompleteTextView.setAdapter(adapter);
+                    ModelAutoCompleteTextView.setEnabled(true);
+                }
+            }
+        });
+
+        /*
+        CompanyAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                s = CompanyAutoCompleteTextView.getText().toString();
+                if(!db.getAllCompanies().contains(s))
+                {
+                    ModelAutoCompleteTextView.setEnabled(false);
+                    ModelAutoCompleteTextView.setTextColor(Color.RED);
+                    return;
+                }
+                ModelAutoCompleteTextView.setTextColor(Color.BLACK);
+                ArrayList<String> models = db.getModelsByCompany(s);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,models);
+                ModelAutoCompleteTextView.setAdapter(adapter);
+                ModelAutoCompleteTextView.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        */
         addCarButton.setOnClickListener( this );
     }
 
@@ -53,6 +105,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
 
     private void addCar()
     {
+        /*
         final Uri uri = TakeGoConst.CarConst.CarUri;
         final ContentValues contentValues = new ContentValues();
 
@@ -97,5 +150,6 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(AddCarActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }.execute();
+        */
     }
 }

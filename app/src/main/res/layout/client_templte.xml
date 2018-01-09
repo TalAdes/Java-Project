@@ -71,51 +71,45 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fname_TB"
+            android:id="@+id/fname_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:inputType="textPersonName"
             android:text="fname_TB" />
 
         <TextView
-            android:id="@+id/lname_TB"
+            android:id="@+id/lname_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
             android:text="lname_TB" />
 
         <TextView
-            android:id="@+id/client_id_TB"
+            android:id="@+id/client_id_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
             android:text="id_TB" />
 
         <TextView
-            android:id="@+id/phoneNum_TB"
+            android:id="@+id/phoneNum_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
             android:text="phoneNum_TB" />
 
         <TextView
-            android:id="@+id/email_TB"
+            android:id="@+id/email_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
             android:text="email_TB" />
 
         <TextView
-            android:id="@+id/numCredit_TB"
+            android:id="@+id/numCredit_TB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
             android:text="numCredit_TB" />
 
     </LinearLayout>

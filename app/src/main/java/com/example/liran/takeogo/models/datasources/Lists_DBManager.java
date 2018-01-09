@@ -210,17 +210,17 @@ public class Lists_DBManager implements IDBManager {
         }
         return modelNames;
     }
-    private String modelsCodeToName(int code) throws Exception {
-        Cursor models = getCarModels();
-        models.moveToFirst();
-        while (!models.isAfterLast())
-        {
-            if(code == models.getInt(models.getColumnIndexOrThrow(TakeGoConst.CarModelConst.ID)))
-                return models.getString(models.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME));
-            models.moveToNext();
-        }
-        return "";
+
+    @Override
+    public ArrayList<String> getAllCompanies() {
+        return null;
     }
+
+    @Override
+    public ArrayList<String> getModelsByCompany(CharSequence s) {
+        return null;
+    }
+
 
 
     @Override    public Cursor getClients()     throws Exception    {return TakeGoConst.ClientListToCursor();}
