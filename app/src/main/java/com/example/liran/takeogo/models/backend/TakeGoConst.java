@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
+import java.util.Map;
 
 import com.example.liran.takeogo.models.entities.Branch;
 import com.example.liran.takeogo.models.entities.Car;
@@ -59,10 +60,10 @@ public class TakeGoConst {
                 postData.append("\"");
             }
 
-            String f= url.concat(String.valueOf(postData));
+            //String f= url.concat(String.valueOf(postData));
 
 
-            URL obj = new URL(f);
+            URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);

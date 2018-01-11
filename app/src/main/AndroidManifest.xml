@@ -2,12 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.liran.takeogo">
 
-    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -40,7 +43,8 @@
             android:label="@string/addClient" />
         <activity android:name=".controller.ShowActivities.ShowClients" />
         <activity android:name=".controller.ShowActivities.ShowBranches" />
-        <activity android:name=".controller.ShowActivities.ShowCar"></activity>
+        <activity android:name=".controller.ShowActivities.ShowCar" />
+        <activity android:name=".controller.LoginActivity"></activity>
     </application>
 
 </manifest>
