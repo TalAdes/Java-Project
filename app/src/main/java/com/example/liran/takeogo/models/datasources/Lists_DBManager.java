@@ -210,17 +210,22 @@ public class Lists_DBManager implements IDBManager {
         }
         return modelNames;
     }
+    @Override public ArrayList<String> getAllCompanies() throws Exception {return TakeGoConst.getAllCompanies();}
+    @Override public ArrayList<String> getModelsByCompany(String s) throws Exception {return TakeGoConst.getModelsByCompany(s);}
+
+    @Override public ArrayList<String> getBranchesCodes() throws Exception {return TakeGoConst.getBranchesCodes();}
+
+    @Override public ArrayList<String> getcodeByModel(String s) throws Exception {return TakeGoConst.getcodeByModel(s);}
 
     @Override
-    public ArrayList<String> getAllCompanies() {
-        return null;
-    }
+    public void dummyOperation() {
+        int[] a = new int[4];
 
-    @Override
-    public ArrayList<String> getModelsByCompany(CharSequence s) {
-        return null;
-    }
+        /*
+        this op made to help debug AsyncTasks
+        */
 
+    }
 
 
     @Override    public Cursor getClients()     throws Exception    {return TakeGoConst.ClientListToCursor();}

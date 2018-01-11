@@ -39,21 +39,14 @@ public interface IDBManager {
     Cursor getCarModels() throws Exception;
 
     Cursor getCarByModels(String selected) throws Exception;
-
     List<String> getModelName() throws Exception;
+    ArrayList<String> getAllCompanies() throws Exception;
+    ArrayList<String> getModelsByCompany(String s) throws Exception;
 
-    ArrayList<String> getAllCompanies();
-
-    ArrayList<String> getModelsByCompany(CharSequence s);
-    //List<CarModel> getCarModels();
-    //List<Client> getClients();
-    //List<Branch> getBranches();
-    //List<Car> getCars();
+    void dummyOperation();
 
 
+    ArrayList<String> getcodeByModel(String s) throws Exception;
 
-
-
-
-
+    ArrayList<String> getBranchesCodes() throws Exception;
 }

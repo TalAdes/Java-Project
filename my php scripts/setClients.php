@@ -22,7 +22,6 @@ $numCredit =$_REQUEST["numCredit"];
 $sql = "INSERT INTO `clients`(`Fname`, `Lname`, `_id`, `phoneNumber`, `email`, `numCredit`) VALUES ($Fname, $Lname, $_id, $phoneNumber, $email, $numCredit)";
 if($conn->query($sql) === TRUE)
 	{echo "New record created succesfully";}
-//else {echo "Error: " . $sql . "<br>" . $conn->error;}
 else {echo "error";}
 $conn->close(); 
 		

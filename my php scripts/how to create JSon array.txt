@@ -1,0 +1,10 @@
+JsonObject jo = Json.createObjectBuilder()
+				.add(
+					"employees", Json.createArrayBuilder()
+								 .add(
+									 Json.createObjectBuilder()
+									 .add("firstName", "John")
+									 .add("lastName", "Doe")
+									 )
+					)
+					.build();

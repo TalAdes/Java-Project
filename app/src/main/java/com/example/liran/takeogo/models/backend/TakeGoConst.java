@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -95,6 +96,53 @@ public class TakeGoConst {
 
     public static final String AUTHORITY = "com.lirantal.takego";
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
+
+    public static ArrayList<String> getModelsByCompany(String s) throws Exception {
+        ArrayList<String> relevantModels = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getModels.php?company="+"\"" + s +"\"")).getJSONArray("models");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantModels.add(obj.getString(CarModelConst.NAME));
+        }
+        return relevantModels;
+    }
+    public static ArrayList<String> getAllCompanies() throws Exception {
+        ArrayList<String> allCompanies = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getCompanies.php?")).getJSONArray("companies");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            allCompanies.add(obj.getString(CarModelConst.NAM_COMP));
+        }
+        return allCompanies;
+    }
+    public static ArrayList<String> getcodeByModel(String s) throws Exception {
+        ArrayList<String> relevantCodes = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getModelCode.php?modelName="+"\"" + s +"\"")).getJSONArray("code");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantCodes.add(obj.getString(CarConst.ID_TYPE_MODEL));
+        }
+        return relevantCodes;
+    }
+
+    public static ArrayList<String> getBranchesCodes() throws Exception {
+        ArrayList<String> relevantCodes = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getBranches.php?")).getJSONArray("branches");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantCodes.add(obj.getString(BranchConst.ID));
+        }
+        return relevantCodes;
+    }
+
 
     public static class BranchConst{
         public static final String ID = "_id";
@@ -335,5 +383,8 @@ public class TakeGoConst {
         }
         return carsCursor;
     }
+
+
+
 }
 
