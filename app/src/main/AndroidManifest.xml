@@ -10,10 +10,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-=======
->>>>>>> b5bc9113cdb72f2aefc646725ec6c07ea794231b
+<!--=======-->
+<!--&gt;>>>>>> b5bc9113cdb72f2aefc646725ec6c07ea794231b-->
 
     <application
         android:allowBackup="true"
@@ -23,31 +23,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".controller.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
-        <activity
-            android:name=".controller.AddActivities.AddCarModel"
-            android:label="@string/addCarModel" />
-        <activity
-            android:name=".controller.ShowActivities.ShowCarModels"
-            android:label="@string/showCarModels" />
-        <activity
-            android:name=".controller.AddActivities.AddCarActivity"
-            android:label="@string/addCar" />
-        <activity
-            android:name=".controller.AddActivities.AddBranchActivity"
-            android:label="@string/addBranch" />
-        <activity
-            android:name=".controller.AddActivities.AddClientActivity"
-            android:label="@string/addClient" />
+        <activity android:name=".controller.AddActivities.AddCarModel" />
+        <activity android:name=".controller.ShowActivities.ShowCarModels" />
+        <activity android:name=".controller.AddActivities.AddCarActivity" />
+        <activity android:name=".controller.AddActivities.AddBranchActivity" />
+        <activity android:name=".controller.AddActivities.AddClientActivity" />
         <activity android:name=".controller.ShowActivities.ShowClients" />
         <activity android:name=".controller.ShowActivities.ShowBranches" />
         <activity android:name=".controller.ShowActivities.ShowCar" />
-        <activity android:name=".controller.LoginActivity"></activity>
+        <activity android:name=".controller.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

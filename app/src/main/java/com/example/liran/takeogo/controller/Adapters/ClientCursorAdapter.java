@@ -25,7 +25,6 @@ public class ClientCursorAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.client_templte,parent,false);
-
     }
 
     @Override

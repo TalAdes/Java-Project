@@ -26,6 +26,7 @@ public class ShowBranches extends Activity {
                     Cursor c;
                     try
                     {
+                        db.dummyOperation();
                         c = db.getBranches();
                     }
                     catch (Exception e)
