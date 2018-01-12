@@ -157,11 +157,11 @@ public class TakeGoConst {
         public static final String TABLE_BRANCHES = "branches";
     }
     public static class CarConst{
-        public static final String ID_BRANCH = "branchID";
+        public static final String ID_CAR = "_ID";
         public static final String ID_TYPE_MODEL = "modelID";
         public static final String MODEL_NAME = "modelName";
         public static final String KILLOMETER = "kilometer";
-        public static final String ID_CAR = "_ID";
+        public static final String ID_BRANCH = "branchID";
 
         public static final Uri CarUri = Uri.withAppendedPath(AUTHORITY_URI,"cars");
         public static final String TABLE_CARS = "cars";
