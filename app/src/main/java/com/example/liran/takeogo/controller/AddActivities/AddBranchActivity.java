@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -44,6 +45,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     private ImageView ivimage;
     private ImageButton addImageButton;
     private Button addBranchButton;
+    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         if(resultCode==Activity.RESULT_OK){
             if(requestCode == SELECT_FILE){
                 Uri selectImageUri = data.getData();
+                path = selectImageUri.getPath();
                 this.ivimage.setImageURI(selectImageUri);
             }
         }
@@ -136,9 +139,9 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
 
             @Override
             protected String doInBackground(Void... voids) {
-                Bitmap bmp = ((BitmapDrawable)ivimage.getDrawable()).getBitmap();
+                Bitmap bmp  = ((BitmapDrawable)ivimage.getDrawable()).getBitmap();
                 String ImageStr = BmpToString(bmp);
-                contentValues.put(TakeGoConst.BranchConst.IMAGE,ImageStr.toString());
+                contentValues.put(TakeGoConst.BranchConst.IMAGE,ImageStr);
                 str = db.addBranch(contentValues);
                 return str;
             }
