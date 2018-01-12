@@ -6,14 +6,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
-import com.example.liran.takeogo.controller.Adapters.CarModelCursorAdapter;
+import com.example.liran.takeogo.controller.Adapters.CarCursorAdapter;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 
@@ -26,23 +25,13 @@ public class ShowCar extends Activity {
     private Spinner spinner;
 
     private ListView listView;
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_car);
         db = DBManagerFactory.getMnager();
         spinner   = (Spinner)findViewById(R.id.chosen_carModel);
-        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected = spinner.getSelectedItem().toString();
-                letHimChooose(selected);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         try {
             new AsyncTask<Void,Void,List<String>>(){
                 @Override
@@ -63,14 +52,30 @@ public class ShowCar extends Activity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowCar.this, android.R.layout.simple_spinner_item, lst);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
+                    custonMain();
                 }
             }.execute();
         }
         catch (Exception e) {Toast.makeText(this,"fail :(",Toast.LENGTH_SHORT);}
     }
 
+    private void custonMain() {
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = spinner.getSelectedItem().toString();
+                ShowChooosenModel(selected);
+            }
 
-    private void letHimChooose(final String selected) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+
+    private void ShowChooosenModel(final String selected) {
         listView = (ListView) findViewById(R.id.carListView);
         try {
             new AsyncTask<Void,Void,Cursor>(){
@@ -78,8 +83,7 @@ public class ShowCar extends Activity {
                 protected Cursor doInBackground(Void... voids) {
                     Cursor c;
                     try
-                    {
-                        c=db.getCarByModels(selected);
+                    {   c=db.getCarByModels(selected);
                     }
                     catch (Exception e)
                     {
@@ -90,8 +94,9 @@ public class ShowCar extends Activity {
                 }
                 @Override
                 protected void onPostExecute(Cursor result) {
-                    Toast.makeText(ShowCar.this,"before succes :)",Toast.LENGTH_SHORT);
-                    listView.setAdapter(new CarModelCursorAdapter(ShowCar.this,result,0 ));
+                    db.dummyOperation();
+
+                    listView.setAdapter(new CarCursorAdapter(ShowCar.this,result,0 ));
                     Toast.makeText(ShowCar.this,"succes :)",Toast.LENGTH_SHORT);
                 }
             }.execute();
