@@ -12,12 +12,13 @@ public class Car
     private long idCar;
     private String model;
 
-    public String getModel() {
-        return model;
-    }
+    public Car(){}
 
-    public void setModel(String model) {
-        this.model = model;
+    public Car(long IdBranch, long IdTypeModel, int Kilometer, long IdCar) {
+        this.idBranch = IdBranch;
+        this.idTypeModel = IdTypeModel;
+        this.kilometer = Kilometer;
+        this.idCar = IdCar;
     }
 
     public long getIdBranch() {return idBranch;}

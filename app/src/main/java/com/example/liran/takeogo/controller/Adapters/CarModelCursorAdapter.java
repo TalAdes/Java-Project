@@ -27,6 +27,7 @@ public class CarModelCursorAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.car_model_template,parent,false);
+
     }
 
     @Override
@@ -44,5 +45,6 @@ public class CarModelCursorAdapter extends CursorAdapter {
         gearboxTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.GEERBOX)));
         numberOfSeatsTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NUMBER_OF_SEATS)));
         modelNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME)));
+
     }
 }
