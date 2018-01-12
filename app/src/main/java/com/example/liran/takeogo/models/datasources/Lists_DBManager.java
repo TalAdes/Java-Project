@@ -2,6 +2,7 @@ package com.example.liran.takeogo.models.datasources;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 
 import com.example.liran.takeogo.models.backend.IDBManager;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
@@ -167,17 +168,68 @@ public class Lists_DBManager implements IDBManager {
     }
 
 
-    //@Override public List<Branch> getBranches() { return Branchs;}
-    //@Override public List<Car> getCars() { return Cars;}
-    //@Override public List<CarModel> getCarModels() { return Models;}
-    //@Override public List<Client> getClients() { return Clients;}
 
-    @Override    public Cursor getCarModels() throws Exception {return TakeGoConst.CarModelListToCursor();}
-    @Override    public Cursor getClients() throws Exception {return TakeGoConst.ClientListToCursor();}
-    @Override    public Cursor getBranches() throws Exception {return TakeGoConst.BranchListToCursor();}
-    @Override    public Cursor getCars() {
-        return null;
+    @Override public Cursor getCarByModels(String selected) throws Exception {
+        Cursor allCars = getCars();
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]
+                {
+                        TakeGoConst.CarConst.ID_BRANCH,
+                        TakeGoConst.CarConst.ID_TYPE_MODEL,
+                        TakeGoConst.CarConst.KILLOMETER,
+                        TakeGoConst.CarConst.ID_CAR,
+                        TakeGoConst.CarConst.MODEL_NAME,
+                });
+
+        allCars.moveToFirst();
+        while (!allCars.isAfterLast())
+        {
+            if(selected.equals(allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.MODEL_NAME))))
+                matrixCursor.addRow(new Object[]
+                        {
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_BRANCH)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_TYPE_MODEL)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.KILLOMETER)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.ID_CAR)),
+                                allCars.getString(allCars.getColumnIndexOrThrow(TakeGoConst.CarConst.MODEL_NAME))
+                        });
+            allCars.moveToNext();
+        }
+        return matrixCursor;
+    }
+    @Override public List<String> getModelName() throws Exception {
+        ArrayList<String> modelNames = new ArrayList<>();
+        Cursor models = getCarModels();
+
+        models.moveToFirst();
+        while (!models.isAfterLast())
+        {
+            String name = models.getString(models.getColumnIndex(TakeGoConst.CarModelConst.NAME));
+            if(!modelNames.contains(name))
+                modelNames.add(name);
+            models.moveToNext();
+        }
+        return modelNames;
+    }
+    @Override public ArrayList<String> getAllCompanies() throws Exception {return TakeGoConst.getAllCompanies();}
+    @Override public ArrayList<String> getModelsByCompany(String s) throws Exception {return TakeGoConst.getModelsByCompany(s);}
+
+    @Override public ArrayList<String> getBranchesCodes() throws Exception {return TakeGoConst.getBranchesCodes();}
+
+    @Override public ArrayList<String> getcodeByModel(String s) throws Exception {return TakeGoConst.getcodeByModel(s);}
+
+    @Override
+    public void dummyOperation() {
+        int[] a = new int[4];
+
+        /*
+        this op made to help debug AsyncTasks
+        */
 
     }
-    //@Override    public Cursor getCars() {return TakeGoConst.CarListToCursor(Cars);}
+
+
+    @Override    public Cursor getClients()     throws Exception    {return TakeGoConst.ClientListToCursor();}
+    @Override    public Cursor getBranches()    throws Exception   {return TakeGoConst.BranchListToCursor();}
+    @Override    public Cursor getCars()        throws Exception       {return TakeGoConst.CarListToCursor();}
+    @Override    public Cursor getCarModels()   throws Exception  {return TakeGoConst.CarModelListToCursor();}
 }

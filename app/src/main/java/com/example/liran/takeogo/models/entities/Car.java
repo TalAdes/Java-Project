@@ -10,6 +10,7 @@ public class Car
     private long idTypeModel;
     private int kilometer;
     private long idCar;
+    private String model;
 
     public Car(){}
 

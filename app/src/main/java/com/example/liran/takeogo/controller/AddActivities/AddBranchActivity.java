@@ -13,33 +13,29 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Telephony;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.bumptech.glide.Glide;
-import com.kosalgeek.android.photoutil.CameraPhoto;
-import com.kosalgeek.android.photoutil.GalleryPhoto;
-import com.kosalgeek.android.photoutil.ImageLoader;
+
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
-import com.kosalgeek.android.photoutil.ImageLoader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import java.io.ByteArrayOutputStream;
 
 public class AddBranchActivity extends Activity implements View.OnClickListener {
 
+//<<<<<<< HEAD
     Integer SELECT_FILE=0;
+    //Integer REQUEST_CAMERA=1,SELECT_FILE=0;
+//=======
 
+//>>>>>>> c33f7e14c09953403dc8eb746e6c5d45a35a9c91
 
     private EditText cityEditText;
     private EditText streetEditText;
@@ -135,6 +131,8 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
             contentValues.put(TakeGoConst.BranchConst.STREET,this.streetEditText.getText().toString());
             contentValues.put(TakeGoConst.BranchConst.NUM_APARTMENT,Integer.valueOf(this.numApartEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.NUMBER_PARKING,Integer.valueOf(this.numParkingEditText.getText().toString()));
+
+
 
         new AsyncTask<Void,Void,String>() {
             String str;

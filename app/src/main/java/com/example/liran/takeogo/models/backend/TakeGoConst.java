@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -97,6 +98,53 @@ public class TakeGoConst {
     public static final String AUTHORITY = "com.lirantal.takego";
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 
+    public static ArrayList<String> getModelsByCompany(String s) throws Exception {
+        ArrayList<String> relevantModels = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getModels.php?company="+"\"" + s +"\"")).getJSONArray("models");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantModels.add(obj.getString(CarModelConst.NAME));
+        }
+        return relevantModels;
+    }
+    public static ArrayList<String> getAllCompanies() throws Exception {
+        ArrayList<String> allCompanies = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getCompanies.php?")).getJSONArray("companies");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            allCompanies.add(obj.getString(CarModelConst.NAM_COMP));
+        }
+        return allCompanies;
+    }
+    public static ArrayList<String> getcodeByModel(String s) throws Exception {
+        ArrayList<String> relevantCodes = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getModelCode.php?modelName="+"\"" + s +"\"")).getJSONArray("code");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantCodes.add(obj.getString(CarConst.ID_TYPE_MODEL));
+        }
+        return relevantCodes;
+    }
+
+    public static ArrayList<String> getBranchesCodes() throws Exception {
+        ArrayList<String> relevantCodes = new ArrayList<String>();
+
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getBranches.php?")).getJSONArray("branches");
+        for(int i=0;i<array.length();i++)
+        {
+            JSONObject obj = array.getJSONObject(i);
+            relevantCodes.add(obj.getString(BranchConst.ID));
+        }
+        return relevantCodes;
+    }
+
+
     public static class BranchConst{
         public static final String ID = "_id";
         public static final String NUMBER_PARKING = "numParking";
@@ -110,10 +158,11 @@ public class TakeGoConst {
         public static final String TABLE_BRANCHES = "branches";
     }
     public static class CarConst{
-        public static final String ID_BRANCH = "_idbranch";
-        public static final String ID_TYPE_MODEL = "_idtypemodel";
+        public static final String ID_BRANCH = "branchID";
+        public static final String ID_TYPE_MODEL = "modelID";
+        public static final String MODEL_NAME = "modelName";
         public static final String KILLOMETER = "kilometer";
-        public static final String ID_CAR = "_idcar";
+        public static final String ID_CAR = "_ID";
 
         public static final Uri CarUri = Uri.withAppendedPath(AUTHORITY_URI,"cars");
         public static final String TABLE_CARS = "cars";
@@ -313,20 +362,30 @@ public class TakeGoConst {
         return matrixCursor;
     }
     public static Cursor CarListToCursor() throws Exception {
-        MatrixCursor carsCursor= new MatrixCursor(new String[] {"branchID","modelID","kilometer","_ID"});
-        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/setCarsSql.php?")).getJSONArray("cars");
+        MatrixCursor carsCursor= new MatrixCursor(new String[]
+                {
+                        CarConst.ID_BRANCH,
+                        CarConst.ID_TYPE_MODEL,
+                        CarConst.KILLOMETER,
+                        CarConst.ID_CAR,
+                        CarConst.MODEL_NAME,
+                });
+        JSONArray array = new JSONObject(httpGet("http://tades.vlab.jct.ac.il/getCars.php?")).getJSONArray("cars");
         for(int i=0;i<array.length();i++)
         {
             JSONObject obj = array.getJSONObject(i);
             carsCursor .addRow(new Object[]{
-                    obj.getInt("_idbranch"),
-                    obj.getInt("_idtypemodel"),
-                    obj.getInt("kilometer"),
-                    obj.getInt("_idcar")
-
+                    obj.getInt(TakeGoConst.CarConst.ID_BRANCH),
+                    obj.getInt(CarConst.ID_TYPE_MODEL),
+                    obj.getInt(CarConst.KILLOMETER),
+                    obj.getInt(CarConst.ID_CAR),
+                    obj.getString(CarConst.MODEL_NAME)
             });
         }
         return carsCursor;
     }
+
+
+
 }
 

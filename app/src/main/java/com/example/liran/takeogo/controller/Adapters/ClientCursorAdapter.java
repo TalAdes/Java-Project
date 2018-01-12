@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
 
-/**
- * Created by טל on 14-Dec-17.
- */
 
 public class ClientCursorAdapter extends CursorAdapter {
 
@@ -33,12 +30,12 @@ public class ClientCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView idTB = (TextView) view.findViewById(R.id.client_id_TB);
-        TextView fnameTB = (TextView) view.findViewById(R.id.fname_TB);
-        TextView lnameTB = (TextView) view.findViewById(R.id.lname_TB);
-        TextView phoneTB = (TextView) view.findViewById(R.id.phoneNum_TB);
-        TextView emailTB = (TextView) view.findViewById(R.id.email_TB);
-        TextView creditTB = (TextView) view.findViewById(R.id.numCredit_TB);
+        TextView idTB = (TextView) view.findViewById(R.id.client_id_TB1);
+        TextView fnameTB = (TextView) view.findViewById(R.id.fname_TB1);
+        TextView lnameTB = (TextView) view.findViewById(R.id.lname_TB1);
+        TextView phoneTB = (TextView) view.findViewById(R.id.phoneNum_TB1);
+        TextView emailTB = (TextView) view.findViewById(R.id.email_TB1);
+        TextView creditTB = (TextView) view.findViewById(R.id.numCredit_TB1);
 
 
         idTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.ClientConst.ID)));
