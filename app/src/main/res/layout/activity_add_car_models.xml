@@ -49,6 +49,39 @@
         android:layout_height="wrap_content"
         android:entries="@array/GearBox" />
 
+    <LinearLayout
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageButton
+            android:id="@+id/imageButtonCarModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/camera_icon" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ImageCarModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="500dp"
+            android:minWidth="500dp"
+            android:paddingTop="50dp" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/AddButton"
         android:layout_width="match_parent"

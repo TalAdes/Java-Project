@@ -97,7 +97,6 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         if(resultCode==Activity.RESULT_OK){
             if(requestCode == SELECT_FILE){
                 Uri selectImageUri = data.getData();
-                path = selectImageUri.getPath();
                 this.ivimage.setImageURI(selectImageUri);
             }
         }
@@ -125,6 +124,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     private void addBranch(){
         final IDBManager db = DBManagerFactory.getMnager();
         final ContentValues contentValues = new ContentValues();
+
 
             contentValues.put(TakeGoConst.BranchConst.ID,Long.valueOf(this.idBranchEditText.getText().toString()));
             contentValues.put(TakeGoConst.BranchConst.CITY,this.cityEditText.getText().toString());

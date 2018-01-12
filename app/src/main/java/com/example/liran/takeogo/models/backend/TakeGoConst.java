@@ -174,6 +174,7 @@ public class TakeGoConst {
         public static final String ENGINE_CAP = "engine";
         public static final String GEERBOX = "gear";
         public static final String NUMBER_OF_SEATS ="seats";
+        public static final String IMAGE = "image";
 
         public static final Uri CarModelsUri = Uri.withAppendedPath(AUTHORITY_URI,"carModels");
         public static  final String TABLE_CARSMODEL = "carModels";
@@ -313,7 +314,8 @@ public class TakeGoConst {
                         CarModelConst.NAME,
                         CarModelConst.ENGINE_CAP,
                         CarModelConst.GEERBOX,
-                        CarModelConst.NUMBER_OF_SEATS
+                        CarModelConst.NUMBER_OF_SEATS,
+                        CarModelConst.IMAGE
                 });
         String temp = httpGet("http://tades.vlab.jct.ac.il/getCarModels.php?");
         JSONObject jsnobject = new JSONObject(temp);
@@ -327,7 +329,8 @@ public class TakeGoConst {
                             obj.getString(CarModelConst.NAME),
                             obj.getInt(CarModelConst.ENGINE_CAP),
                             obj.getString(CarModelConst.GEERBOX),
-                            obj.getInt(CarModelConst.NUMBER_OF_SEATS)
+                            obj.getInt(CarModelConst.NUMBER_OF_SEATS),
+                            obj.getString(CarModelConst.IMAGE)
                     });
         }
         return matrixCursor;
