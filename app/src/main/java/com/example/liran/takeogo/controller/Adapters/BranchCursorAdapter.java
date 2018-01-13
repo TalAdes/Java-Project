@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
@@ -33,7 +32,7 @@ public class BranchCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            return LayoutInflater.from(context).inflate(R.layout.branch_template,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.branch_template,parent,false);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class BranchCursorAdapter extends CursorAdapter {
         streetTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.STREET)));
         apartmentTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.NUM_APARTMENT)));
         url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
-        Glide.with(this.context).load(url).into(imageB);
+        Glide.with(this.context).load(url).error(R.drawable.camera_icon).override(300,400).centerCrop().into(imageB);
 
     }
 }

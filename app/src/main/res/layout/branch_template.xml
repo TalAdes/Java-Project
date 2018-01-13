@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-
+        android:src="@drawable/camera_icon"
         />
 
     <LinearLayout
@@ -24,34 +24,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="ID Branch:" />
+            android:text="ID Branch:" />
 
         <TextView
             android:id="@+id/cityB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="City:" />
+            android:text="City:" />
 
         <TextView
             android:id="@+id/streetB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Street:" />
+            android:text="Street:" />
 
         <TextView
             android:id="@+id/apartmentB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Number Of Branch:" />
+            android:text="Number Of Branch:" />
 
         <TextView
             android:id="@+id/numparkingB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Number Of Parking:" />
+            android:text="Number Of Parking:" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_time_passing" />
+                android:src="@drawable/ic_time_passing" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_notes" />
+                android:src="@drawable/ic_notes" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_credit_card" />
+                android:src="@drawable/ic_credit_card" />
         </LinearLayout>
 
     </LinearLayout>

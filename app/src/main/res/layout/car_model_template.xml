@@ -9,11 +9,13 @@
         android:id="@+id/carImage"
         android:layout_width="wrap_content"
         android:layout_height="154dp"
+        android:layout_marginLeft="15dp"
         android:src="@drawable/camera_icon" />
 
     <LinearLayout
         android:layout_width="106dp"
         android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -21,26 +23,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="TextView"
-            tools:text="ID Model:" />
+            android:text="ID Model:" />
 
         <TextView
             android:id="@+id/nameCampT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text=" Company:" />
+            android:text=" Company:" />
 
         <TextView
             android:id="@+id/ModelT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Model:" />
+            android:text="Model:" />
 
         <TextView
             android:id="@+id/engineCapT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Engine capacity:" />
+            android:text="Engine capacity:" />
 
         <TextView
             android:id="@+id/geerboxT"
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Number of seats:" />
+            android:text="Number of seats:" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +68,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingRight="15dp"
-                app:srcCompat="@drawable/ic_star" />
+                android:src="@drawable/ic_star" />
 
         </LinearLayout>
     </LinearLayout>
@@ -131,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_car_key" />
+                android:src="@drawable/ic_car_key" />
         </LinearLayout>
 
     </LinearLayout>

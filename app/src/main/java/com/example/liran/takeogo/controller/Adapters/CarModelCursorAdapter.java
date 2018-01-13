@@ -51,6 +51,6 @@ public class CarModelCursorAdapter extends CursorAdapter {
         modelNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME)));
         cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
         url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
-        Glide.with(this.context).load(url).into(imageC);
+        Glide.with(this.context).load(url).error(R.drawable.camera_icon).override(300,400).centerCrop().into(imageC);
     }
 }

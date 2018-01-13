@@ -38,7 +38,7 @@ public class ShowBranches extends Activity {
                 }
                 @Override
                 protected void onPostExecute(Cursor result) {
-                    listView.setAdapter(new BranchCursorAdapter(ShowBranches.this,result,0 ));
+                    listView.setAdapter(new BranchCursorAdapter(ShowBranches.this,result,0));
                     Toast.makeText(ShowBranches.this,"succes :)",Toast.LENGTH_SHORT);
                 }
             }.execute();
