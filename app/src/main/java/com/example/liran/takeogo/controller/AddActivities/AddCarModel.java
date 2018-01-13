@@ -10,6 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.widget.ImageButton;
+import java.io.ByteArrayOutputStream;
+import android.provider.MediaStore;
+import android.widget.ImageView;
+import android.app.AlertDialog;
+import android.util.Base64;
 
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
@@ -18,12 +29,16 @@ import com.example.liran.takeogo.models.backend.TakeGoConst;
 
 public class AddCarModel extends Activity implements View.OnClickListener {
 
+    Integer SELECT_FILE=0;
+
     private EditText CompanyName;
     private EditText ModelName;
     private EditText ModelNum;
     private EditText EngineVolume;
     private EditText SeatsNumber;
     private Spinner GearboxSpinner;
+    private ImageView ivimage;
+    private ImageButton addImageButton;
     private Button AddButton;
     IDBManager db;
 
@@ -41,15 +56,62 @@ public class AddCarModel extends Activity implements View.OnClickListener {
         EngineVolume = (EditText)findViewById( R.id.EngineVolume );
         SeatsNumber = (EditText)findViewById( R.id.SeatsNumber );
         GearboxSpinner = (Spinner)findViewById( R.id.GearboxSpinner );
+        addImageButton = (ImageButton)findViewById(R.id.imageButtonCarModel);
+        ivimage = (ImageView)findViewById(R.id.ImageCarModel);
         AddButton = (Button)findViewById( R.id.AddButton );
-
+        addImageButton.setOnClickListener(this);
         AddButton.setOnClickListener(this);
+    }
+
+    private void selectImage(){
+        final CharSequence[] items = {"Gallery" ,"Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddCarModel.this);
+        builder.setTitle("Add Photo");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if(items[i].equals("Gallery")){
+                    Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent,SELECT_FILE);
+                }
+                else if(items[i].equals("Cancel")){
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode==Activity.RESULT_OK){
+            if(requestCode == SELECT_FILE){
+                Uri selectImageUri = data.getData();
+                this.ivimage.setImageURI(selectImageUri);
+            }
+        }
     }
 
     public void onClick(View v) {
         if ( v == AddButton ) {
             addCarModel();
         }
+        if(v==addImageButton){
+            selectImage();
+        }
+    }
+
+    private String BmpToString(Bitmap bp)
+    {
+        ByteArrayOutputStream streme = new ByteArrayOutputStream();
+        bp.compress(Bitmap.CompressFormat.PNG,90,streme);
+        byte [] arr = streme.toByteArray();
+        String image_str = Base64.encodeToString(arr,Base64.DEFAULT);
+        return image_str;
     }
 
     private void addCarModel() {
@@ -80,6 +142,9 @@ public class AddCarModel extends Activity implements View.OnClickListener {
             String str;
             @Override
             protected String doInBackground(Void... voids) {
+                Bitmap bmp  = ((BitmapDrawable)ivimage.getDrawable()).getBitmap();
+                String ImageStr = BmpToString(bmp);
+                contentValues.put(TakeGoConst.CarModelConst.IMAGE,ImageStr);
                 str = db.addCarModel(contentValues);
                 return str;
             }

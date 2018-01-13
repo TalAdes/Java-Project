@@ -6,8 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
 
@@ -18,6 +19,7 @@ import com.example.liran.takeogo.models.backend.TakeGoConst;
 public class CarModelCursorAdapter extends CursorAdapter {
     Cursor cursor;
     Context context;
+    String url;
 
     public CarModelCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
@@ -37,6 +39,9 @@ public class CarModelCursorAdapter extends CursorAdapter {
         TextView gearboxTB = (TextView) view.findViewById(R.id.gearbox_TB);
         TextView numberOfSeatsTB = (TextView) view.findViewById(R.id.numberOfSeats_TB);
         TextView modelNameTB = (TextView) view.findViewById(R.id.modelName_TB);
+        ImageView imageC = (ImageView)view.findViewById(R.id.carImage);
+        url = "http://tades.vlab.jct.ac.il/";
+
 
         modelDTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.ID)));
         companyNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAM_COMP)));
@@ -44,5 +49,8 @@ public class CarModelCursorAdapter extends CursorAdapter {
         gearboxTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.GEERBOX)));
         numberOfSeatsTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NUMBER_OF_SEATS)));
         modelNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME)));
+        //String img = cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
+      //  url = url + img;
+        //Glide.with(this.context).load(url).into(imageC);
     }
 }

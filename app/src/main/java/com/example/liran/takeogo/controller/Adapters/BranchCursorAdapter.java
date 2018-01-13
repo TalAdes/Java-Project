@@ -21,6 +21,7 @@ public class BranchCursorAdapter extends CursorAdapter {
 
     Cursor cursor;
     Context context;
+    String url;
 
 
     public BranchCursorAdapter(Context context, Cursor c, int flags) {
@@ -42,9 +43,8 @@ public class BranchCursorAdapter extends CursorAdapter {
         TextView cityTB = (TextView) view.findViewById(R.id.city_TB);
         TextView streetTB = (TextView) view.findViewById(R.id.street_TB);
         TextView apartmentTB = (TextView) view.findViewById(R.id.apartmentNum_TB);
-        ImageView imageB = (ImageView) view.findViewById(R.id.branchImage) ;
-        String image_str = cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
-        final byte[] decodedBytes = Base64.decode(image_str, Base64.DEFAULT);
+        ImageView imageB = (ImageView) view.findViewById(R.id.branchImage);
+        url = "http://tades.vlab.jct.ac.il/";
 
 
 
@@ -53,7 +53,9 @@ public class BranchCursorAdapter extends CursorAdapter {
         cityTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.CITY)));
         streetTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.STREET)));
         apartmentTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.NUM_APARTMENT)));
-        Glide.with(this.context).load(decodedBytes).crossFade().fitCenter().into(imageB);
+        String img = cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
+        url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
+        Glide.with(this.context).load(url).into(imageB);
 
 
     }
