@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Base64;
+
 import com.bumptech.glide.Glide;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
@@ -55,8 +55,7 @@ public class BranchCursorAdapter extends CursorAdapter {
         apartmentTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.NUM_APARTMENT)));
         String img = cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
         url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
-        GlideA.with(this.context).load(url).into(imageB);
 
-
+        Glide.with(this.context).load(url).into(imageB);
     }
 }
