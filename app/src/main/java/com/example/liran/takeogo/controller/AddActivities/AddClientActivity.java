@@ -215,7 +215,7 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Pattern pattern = Pattern.compile("^[ 1-9]{9}$");
+                Pattern pattern = Pattern.compile("^[0-9]{9}$");
                 idTextView.setTextColor(Color.RED);
 
                 if (pattern.matcher(idEditText.getText().toString()).matches())
