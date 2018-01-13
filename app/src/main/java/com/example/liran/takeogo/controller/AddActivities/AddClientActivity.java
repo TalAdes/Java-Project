@@ -49,7 +49,6 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
 
 
     private void findViews() {
-        addClientButton.setEnabled(false);
 
         fnameEditText = (EditText)findViewById( R.id.fnameEditText );
         valid_fname = (TextView) findViewById( R.id.valid_fname );
@@ -70,6 +69,7 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
         numCreTextView=(TextView)findViewById(R.id.credit_card_valid_TW);
 
         addClientButton = (Button)findViewById( R.id.addClientButton );
+        addClientButton.setEnabled(false);
 
         addClientButton.setOnClickListener(this);
         emailEditText.addTextChangedListener(new TextWatcher() {

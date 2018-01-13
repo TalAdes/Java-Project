@@ -55,6 +55,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
         addCarButton = (Button)findViewById( R.id.addCarButton );
         addCarButton.setOnClickListener( this );
         addCarButton.setEnabled(false);
+        addCarButton.setBackgroundColor(Color.WHITE);
 
         CompanyAutoCompleteTextView.setThreshold(1);
         ModelAutoCompleteTextView.setThreshold(1);
@@ -275,9 +276,15 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
 
     private void checkOthers() {
         if (modelID&&branch&&kilometer&&ID)
+        {
             addCarButton.setEnabled(true);
+            addCarButton.setBackgroundColor(Color.GREEN);
+        }
         else
+        {
             addCarButton.setEnabled(false);
+            addCarButton.setBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
