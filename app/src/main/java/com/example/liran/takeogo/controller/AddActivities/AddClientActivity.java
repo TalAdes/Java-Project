@@ -45,11 +45,11 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
         setContentView(R.layout.activity_add_client);
         db = DBManagerFactory.getMnager();
         findViews();
-        addClientButton.setEnabled(false);
     }
 
 
     private void findViews() {
+        addClientButton.setEnabled(false);
 
         fnameEditText = (EditText)findViewById( R.id.fnameEditText );
         valid_fname = (TextView) findViewById( R.id.valid_fname );

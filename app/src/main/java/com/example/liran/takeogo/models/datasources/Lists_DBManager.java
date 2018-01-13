@@ -101,14 +101,9 @@ public class Lists_DBManager implements IDBManager {
         return false;
     }
 
-    @Override    public long addCar(ContentValues values) throws Exception {
-        Car car = TakeGoConst.ContentValuesToCar(values);
-        for (Car item : Cars) {
-            if(item.getIdCar() == car.getIdCar())
-                throw new Exception("This car already exists!.");
-        }
-        Cars.add(car);
-        return car.getIdCar();
+    @Override    public String addCar(ContentValues values) {
+        String str = TakeGoConst.httpPost("http://tades.vlab.jct.ac.il/setCars.php?",values.valueSet());
+        return str;
     }
     @Override    public boolean removeCar(long id) {
         Car carToremove = null;

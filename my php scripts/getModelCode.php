@@ -13,7 +13,7 @@ if($conn->connected_error)
 {die("Connection failed:" .$conn->connected_error);}
 
 $modelName =$_REQUEST["modelName"];
-$result = $conn->query("SELECT DISTINCT `modelID` FROM `cars` WHERE `modelName` = $modelName");
+$result = $conn->query("SELECT `_id` FROM `carModels` WHERE `model` = $modelName");
 $data =  array();
 
 if($result->num_rows > 0) # check if there is any data

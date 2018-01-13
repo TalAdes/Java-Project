@@ -23,7 +23,7 @@ public interface IDBManager {
     boolean removeCarModle(long id);
     boolean updateCarModel(ContentValues values);
 
-    long addCar(ContentValues values) throws Exception;
+    String addCar(ContentValues values);
     boolean removeCar(long id);
     boolean updateCar(ContentValues values);
 
