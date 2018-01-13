@@ -15,7 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.MainActivity"/>
+        <activity android:name=".controller.MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
         <activity android:name=".controller.AddActivities.AddCarModel" />
         <activity android:name=".controller.ShowActivities.ShowCarModels" />
         <activity android:name=".controller.AddActivities.AddCarActivity" />
@@ -25,10 +31,10 @@
         <activity android:name=".controller.ShowActivities.ShowBranches" />
         <activity android:name=".controller.ShowActivities.ShowCar" />
         <activity android:name=".controller.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
     </application>

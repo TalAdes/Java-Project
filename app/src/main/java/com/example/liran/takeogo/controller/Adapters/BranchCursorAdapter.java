@@ -55,5 +55,6 @@ public class BranchCursorAdapter extends CursorAdapter {
         apartmentTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.NUM_APARTMENT)));
         url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
         Glide.with(this.context).load(url).into(imageB);
+
     }
 }
