@@ -49,8 +49,8 @@ public class CarModelCursorAdapter extends CursorAdapter {
         gearboxTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.GEERBOX)));
         numberOfSeatsTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NUMBER_OF_SEATS)));
         modelNameTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.NAME)));
-        //String img = cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
-      //  url = url + img;
-        //Glide.with(this.context).load(url).into(imageC);
+        cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
+        url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.CarModelConst.IMAGE));
+        Glide.with(this.context).load(url).into(imageC);
     }
 }

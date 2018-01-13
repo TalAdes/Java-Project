@@ -54,12 +54,6 @@ public class BranchCursorAdapter extends CursorAdapter {
         streetTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.STREET)));
         apartmentTB.setText(cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.NUM_APARTMENT)));
         url = url + cursor.getString(cursor.getColumnIndexOrThrow(TakeGoConst.BranchConst.IMAGE));
-<<<<<<< HEAD
-=======
-        Glide.with(this.context).load(url).into(imageB);
-
->>>>>>> 5dc4e60f462f3dccfd9a4864d5e0873bc2c08600
-
         Glide.with(this.context).load(url).into(imageB);
     }
 }
