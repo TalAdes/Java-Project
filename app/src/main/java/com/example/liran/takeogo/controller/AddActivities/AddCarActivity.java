@@ -33,6 +33,8 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
     private String s;
     private ArrayList<String> allBranches,allCompanies,relevantModels,relevantCodes;
     private Map<String,ArrayList<String>> compDict,modelDict;
+    private boolean modelID=false,branch=false,kilometer=false,ID=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,8 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
 
         addCarButton = (Button)findViewById( R.id.addCarButton );
         addCarButton.setOnClickListener( this );
+        addCarButton.setEnabled(false);
+        addCarButton.setBackgroundColor(Color.WHITE);
 
         CompanyAutoCompleteTextView.setThreshold(1);
         ModelAutoCompleteTextView.setThreshold(1);
@@ -71,12 +75,10 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
         });
         BranchAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { ModelNumAutoCompleteTextView.showDropDown(); }
+            public void onClick(View v) { BranchAutoCompleteTextView.showDropDown(); }
         });
-        CompanyAutoCompleteTextView.setEnabled(false);
         ModelAutoCompleteTextView.setEnabled(false);
         ModelNumAutoCompleteTextView.setEnabled(false);
-        BranchAutoCompleteTextView.setEnabled(false);
 
         //initial activity DB
         new AsyncTask<Void, Void, ArrayList<String>>() {
@@ -100,13 +102,13 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(AddCarActivity.this,"Connection to Companies DataBase Success",Toast.LENGTH_SHORT).show();
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,allCompanies);
                 CompanyAutoCompleteTextView.setAdapter(adapter);
-                CompanyAutoCompleteTextView.setEnabled(true);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,allBranches);
+                BranchAutoCompleteTextView.setAdapter(adapter2);
             }
         }.execute();
 
         //Listeners that look after the hierarchical association between the car's AutoFeels
-        CompanyAutoCompleteTextView.addTextChangedListener(new TextWatcher()
-        {
+        CompanyAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
            @Override public void afterTextChanged(Editable s) { }
            @Override public void onTextChanged(CharSequence sr, int start, int before, int count)
@@ -114,6 +116,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                s = CompanyAutoCompleteTextView.getText().toString();
                if (!allCompanies.contains(s))
                {
+                   db.dummyOperation();
                    CompanyAutoCompleteTextView.setTextColor(Color.RED);
                    ModelAutoCompleteTextView.setEnabled(false);
                    ModelNumAutoCompleteTextView.setEnabled(false);
@@ -141,7 +144,6 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                        @Override protected void onPostExecute(ArrayList<String> relevantModels)
                        {
                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddCarActivity.this, android.R.layout.simple_list_item_1, relevantModels);
-                           db.dummyOperation();
                            ModelAutoCompleteTextView.setAdapter(adapter);
                            ModelAutoCompleteTextView.setText("");
                            ModelAutoCompleteTextView.setEnabled(true);
@@ -151,8 +153,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                }
            }
        });
-        ModelAutoCompleteTextView.addTextChangedListener(new TextWatcher()
-        {
+        ModelAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override public void afterTextChanged(Editable s) { }
             @Override public void onTextChanged(CharSequence sr, int start, int before, int count)
@@ -196,8 +197,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-        ModelNumAutoCompleteTextView.addTextChangedListener(new TextWatcher()
-        {
+        ModelNumAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override public void afterTextChanged(Editable s) { }
             @Override public void onTextChanged(CharSequence sr, int start, int before, int count)
@@ -207,17 +207,20 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                 if (!relevantCodes.contains(s))
                 {
                     ModelNumAutoCompleteTextView.setTextColor(Color.RED);
+                    modelID=false;
+                    checkOthers();
                 }
                 else
                 {
                     ModelNumAutoCompleteTextView.setTextColor(Color.BLACK);
+                    modelID=true;
+                    checkOthers();
                 }
             }
         });
 
         //Listener for the branch's AutoFeel
-        BranchAutoCompleteTextView.addTextChangedListener(new TextWatcher()
-        {
+        BranchAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override public void afterTextChanged(Editable s) { }
             @Override public void onTextChanged(CharSequence sr, int start, int before, int count)
@@ -226,13 +229,62 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
                 if (!allBranches.contains(s))
                 {
                     BranchAutoCompleteTextView.setTextColor(Color.RED);
+                    branch=false;
+                    checkOthers();
                 }
                 else
                 {
                     CompanyAutoCompleteTextView.setTextColor(Color.BLACK);
+                    branch=true;
+                    checkOthers();
                 }
             }
         });
+
+        killometer.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int number;
+                try {
+                    number = Integer.parseInt(s.toString());
+                    if (number>=0)
+                        kilometer=true;
+                    else kilometer=false;
+                }
+                catch (Exception e)
+                {
+                    kilometer=false;
+                }
+                checkOthers();
+            }
+        });
+        idCar.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()==7||s.length()==8)
+                    ID=true;
+                else ID=false;
+                checkOthers();
+            }
+        });
+    }
+
+    private void checkOthers() {
+        if (modelID&&branch&&kilometer&&ID)
+        {
+            addCarButton.setEnabled(true);
+            addCarButton.setBackgroundColor(Color.GREEN);
+        }
+        else
+        {
+            addCarButton.setEnabled(false);
+            addCarButton.setBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
@@ -257,13 +309,13 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
             String str;
             @Override
             protected String doInBackground(Void... voids) {
-                str = db.addClient(contentValues);
+                str = db.addCar(contentValues);
                 return str;
             }
 
             @Override
             protected void onPostExecute(String str) {
-                if(str!="error")
+                if(!str.equals("error"))
                 {
                     Toast.makeText(AddCarActivity.this, str, Toast.LENGTH_SHORT).show();
                     finish();

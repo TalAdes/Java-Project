@@ -45,7 +45,6 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
         setContentView(R.layout.activity_add_client);
         db = DBManagerFactory.getMnager();
         findViews();
-        addClientButton.setEnabled(false);
     }
 
 
@@ -70,6 +69,7 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
         numCreTextView=(TextView)findViewById(R.id.credit_card_valid_TW);
 
         addClientButton = (Button)findViewById( R.id.addClientButton );
+        addClientButton.setEnabled(false);
 
         addClientButton.setOnClickListener(this);
         emailEditText.addTextChangedListener(new TextWatcher() {
@@ -261,7 +261,7 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
             contentValues.put(TakeGoConst.ClientConst.ID,Long.valueOf(this.idEditText.getText().toString()));
             contentValues.put(TakeGoConst.ClientConst.PHONE_NUMBER,this.phoneNumEditText.getText().toString());
             contentValues.put(TakeGoConst.ClientConst.EMAIL,this.emailEditText.getText().toString());
-            contentValues.put(TakeGoConst.ClientConst.NUM_CREDIT,Long.valueOf(this.numCreditEditText.getText().toString()));
+            contentValues.put(TakeGoConst.ClientConst.NUM_CREDIT,this.numCreditEditText.getText().toString());
 
 
             new AsyncTask<Void,Void,String>() {

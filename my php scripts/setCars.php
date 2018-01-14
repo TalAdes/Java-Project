@@ -16,8 +16,9 @@ $branchID=$_REQUEST["branchID"];
 $modelID =$_REQUEST["modelID"];
 $kilometer =$_REQUEST["kilometer"];
 $_ID =$_REQUEST["_ID"];
+$name =$_REQUEST["modelName"];
 
-$sql = "INSERT INTO `cars`(`branchID`, `modelID`, `kilometer`, `_ID`) VALUES ($branchID, $modelID, $kilometer, $_ID)";
+$sql = "INSERT INTO `cars`(`branchID`, `modelID`, `kilometer`, `_ID`, `modelName`) VALUES ($branchID, $modelID, $kilometer, $_ID,$name)";
 if($conn->query($sql) === TRUE)
 	{echo "New record created succesfully";}
 else {echo "error";}

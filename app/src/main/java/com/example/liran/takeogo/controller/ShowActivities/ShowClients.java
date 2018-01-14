@@ -29,6 +29,7 @@ public class ShowClients extends Activity {
                     Cursor c;
                     try
                     {
+                        //db.dummyOperation();
                         c = db.getClients();
                     }
                     catch (Exception e)

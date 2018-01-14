@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import java.util.Map;
 
 import com.example.liran.takeogo.models.entities.Branch;
 import com.example.liran.takeogo.models.entities.Car;
@@ -127,7 +126,7 @@ public class TakeGoConst {
         for(int i=0;i<array.length();i++)
         {
             JSONObject obj = array.getJSONObject(i);
-            relevantCodes.add(obj.getString(CarConst.ID_TYPE_MODEL));
+            relevantCodes.add(obj.getString(CarModelConst.ID));
         }
         return relevantCodes;
     }
@@ -359,7 +358,7 @@ public class TakeGoConst {
                             obj.getInt(ClientConst.ID),
                             obj.getString(ClientConst.PHONE_NUMBER),
                             obj.getString(ClientConst.EMAIL),
-                            obj.getLong(ClientConst.NUM_CREDIT)
+                            obj.getString(ClientConst.NUM_CREDIT)
                     });
         }
         return matrixCursor;
