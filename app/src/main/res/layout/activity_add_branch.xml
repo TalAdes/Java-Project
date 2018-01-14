@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.liran.takeogo.controller.AddActivities.AddBranchActivity">
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddBranchActivity"
+    android:background="@drawable/audi_r8_v10_side_view_road_109803_360x640">
 
     <EditText
         android:id="@+id/cityEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="שם העיר"
-        android:inputType="text" />
+        android:textColorHint="#ffffff"
+        android:inputType="text"
+        android:textColor="#fffffff"/>
 
     <EditText
         android:id="@+id/streetEditText"
@@ -21,7 +25,9 @@
         android:layout_height="wrap_content"
         android:hint="שם הרחוב"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColorHint="#ffffff"
+        android:textColor="#fffffff"/>
 
     <EditText
         android:id="@+id/numApartEditText"
@@ -29,7 +35,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="מספר דירה"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#fffffff"/>
 
     <EditText
         android:id="@+id/idBranchEditText"
@@ -37,7 +45,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="מספר הסניף"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#fffffff"/>
 
     <EditText
         android:id="@+id/numParkingEditText"
@@ -45,12 +55,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="מספר מקומות חניה"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#fffffff"/>
 
     <LinearLayout
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:background="@android:color/background_light"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:background="#00000000"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp">
@@ -58,9 +70,11 @@
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:src="@drawable/camera_icon" />
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_big_instagram_logo" />
 
     </LinearLayout>
 
@@ -83,8 +97,17 @@
 
     <Button
         android:id="@+id/addBranchButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="הוסף סניף" />
+        android:layout_width="194dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="-0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:text="הוסף סניף"
+        android:textColor="#5478F0"
+        android:textSize="31sp" />
 </LinearLayout>
