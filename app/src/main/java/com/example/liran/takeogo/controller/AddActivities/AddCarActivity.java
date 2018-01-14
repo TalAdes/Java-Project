@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
@@ -34,7 +35,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
     private ArrayList<String> allBranches,allCompanies,relevantModels,relevantCodes;
     private Map<String,ArrayList<String>> compDict,modelDict;
     private boolean modelID=false,branch=false,kilometer=false,ID=false;
-
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,10 +97,15 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
 
             @Override
             protected void onPostExecute(ArrayList<String> allCompanies) {
-                if (allCompanies.isEmpty())
-                    Toast.makeText(AddCarActivity.this,"There was an error to connect to internet",Toast.LENGTH_SHORT).show();
+                if (allCompanies.isEmpty()) {
+                    Toast.makeText(AddCarActivity.this, "There was an error to connect to internet", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
                 else
+                {
                     Toast.makeText(AddCarActivity.this,"Connection to Companies DataBase Success",Toast.LENGTH_SHORT).show();
+                }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,allCompanies);
                 CompanyAutoCompleteTextView.setAdapter(adapter);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(AddCarActivity.this,android.R.layout.simple_list_item_1,allBranches);
@@ -278,7 +284,7 @@ public class AddCarActivity extends Activity implements View.OnClickListener {
         if (modelID&&branch&&kilometer&&ID)
         {
             addCarButton.setEnabled(true);
-            addCarButton.setBackgroundColor(Color.GREEN);
+            addCarButton.setBackgroundColor(Color.rgb(190,2,100));
         }
         else
         {
