@@ -1,31 +1,33 @@
 package com.example.liran.takeogo.controller.AddActivities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.widget.ImageButton;
-import java.io.ByteArrayOutputStream;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
-import android.widget.ImageView;
-import android.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 import com.example.liran.takeogo.models.backend.TakeGoConst;
+
+import java.io.ByteArrayOutputStream;
 
 public class AddCarModel extends Activity implements View.OnClickListener {
 
@@ -41,6 +43,8 @@ public class AddCarModel extends Activity implements View.OnClickListener {
     private ImageButton addImageButton;
     private Button AddButton;
     IDBManager db;
+    private boolean idModel=false,nameComp=false,nameModel=false,engineCap=false,numberOfSeats=false;
+
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,73 @@ public class AddCarModel extends Activity implements View.OnClickListener {
         AddButton = (Button)findViewById( R.id.AddButton );
         addImageButton.setOnClickListener(this);
         AddButton.setOnClickListener(this);
+        AddButton.setEnabled(false);
+
+        CompanyName.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    nameComp=false;
+                else nameComp=true;
+                checkOthers();
+            }
+
+        });
+        ModelName.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    nameModel=false;
+                else nameModel=true;
+                checkOthers();
+            }
+
+        });
+        ModelNum.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    idModel=false;
+                else idModel=true;
+                checkOthers();
+            }
+
+        });
+        EngineVolume.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    engineCap=false;
+                else engineCap=true;
+                checkOthers();
+            }
+
+        });
+        SeatsNumber.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    numberOfSeats=false;
+                else numberOfSeats=true;
+                checkOthers();
+            }
+
+        });
     }
 
     private void selectImage(){
@@ -96,6 +167,7 @@ public class AddCarModel extends Activity implements View.OnClickListener {
         }
     }
 
+
     public void onClick(View v) {
         if ( v == AddButton ) {
             addCarModel();
@@ -104,7 +176,16 @@ public class AddCarModel extends Activity implements View.OnClickListener {
             selectImage();
         }
     }
-
+    private void checkOthers() {
+        if (idModel&&nameComp&&nameModel&&engineCap&&numberOfSeats)
+        {
+            AddButton.setEnabled(true);
+        }
+        else
+        {
+            AddButton.setEnabled(false);
+        }
+    }
     private String BmpToString(Bitmap bp)
     {
         ByteArrayOutputStream streme = new ByteArrayOutputStream();

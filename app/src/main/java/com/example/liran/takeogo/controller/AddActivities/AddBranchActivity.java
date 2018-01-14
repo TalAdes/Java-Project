@@ -7,12 +7,13 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
     private ImageButton addImageButton;
     private Button addBranchButton;
     private String path;
-
+    private boolean city=false,street=false,numApart=false,idBranch=false,numParking=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,72 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
 
         addImageButton.setOnClickListener(this);
         addBranchButton.setOnClickListener( this );
+
+        cityEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    city=false;
+                else city=true;
+                checkOthers();
+            }
+
+        });
+        streetEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    street=false;
+                else street=true;
+                checkOthers();
+            }
+
+        });
+        numApartEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    numApart=false;
+                else numApart=true;
+                checkOthers();
+            }
+
+        });
+        idBranchEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    idBranch=false;
+                else idBranch=true;
+                checkOthers();
+            }
+
+        });
+        numApartEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(""))
+                    numApart=false;
+                else numApart=true;
+                checkOthers();
+            }
+
+        });
     }
 
     private void selectImage(){
@@ -111,7 +178,16 @@ public class AddBranchActivity extends Activity implements View.OnClickListener 
         }
 
     }
-
+    private void checkOthers() {
+        if (city&&street&&numApart&&idBranch&&numParking)
+        {
+            addBranchButton.setEnabled(true);
+        }
+        else
+        {
+            addBranchButton.setEnabled(false);
+        }
+    }
     private String BmpToString(Bitmap bp)
     {
         ByteArrayOutputStream streme = new ByteArrayOutputStream();
