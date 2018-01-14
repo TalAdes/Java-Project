@@ -261,7 +261,7 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
             contentValues.put(TakeGoConst.ClientConst.ID,Long.valueOf(this.idEditText.getText().toString()));
             contentValues.put(TakeGoConst.ClientConst.PHONE_NUMBER,this.phoneNumEditText.getText().toString());
             contentValues.put(TakeGoConst.ClientConst.EMAIL,this.emailEditText.getText().toString());
-            contentValues.put(TakeGoConst.ClientConst.NUM_CREDIT,Long.valueOf(this.numCreditEditText.getText().toString()));
+            contentValues.put(TakeGoConst.ClientConst.NUM_CREDIT,this.numCreditEditText.getText().toString());
 
 
             new AsyncTask<Void,Void,String>() {

@@ -358,7 +358,7 @@ public class TakeGoConst {
                             obj.getInt(ClientConst.ID),
                             obj.getString(ClientConst.PHONE_NUMBER),
                             obj.getString(ClientConst.EMAIL),
-                            obj.getLong(ClientConst.NUM_CREDIT)
+                            obj.getString(ClientConst.NUM_CREDIT)
                     });
         }
         return matrixCursor;
