@@ -240,9 +240,14 @@ public class AddClientActivity extends Activity implements View.OnClickListener 
 
     private void checkOthers() {
         if (id&&phonen&&fname&&lname&&credit&&e_mail)
+        {
             addClientButton.setEnabled(true);
+
+        }
         else
+        {
             addClientButton.setEnabled(false);
+        }
     }
 
     @Override

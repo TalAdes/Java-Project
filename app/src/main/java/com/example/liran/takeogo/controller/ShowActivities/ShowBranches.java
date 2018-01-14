@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
@@ -13,12 +15,15 @@ import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 
 public class ShowBranches extends Activity {
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_branches);
         final IDBManager db = DBManagerFactory.getMnager();
         final ListView listView = (ListView) findViewById(R.id.branchListView);
+        progressBar = (ProgressBar)findViewById(R.id.branchProgressBar);
         try {
             new AsyncTask<Void,Void,Cursor>(){
                 @Override
@@ -38,8 +43,16 @@ public class ShowBranches extends Activity {
                 }
                 @Override
                 protected void onPostExecute(Cursor result) {
-                    listView.setAdapter(new BranchCursorAdapter(ShowBranches.this,result,0));
-                    Toast.makeText(ShowBranches.this,"succes :)",Toast.LENGTH_SHORT);
+                    if(result == null)
+                    {
+                        Toast.makeText(ShowBranches.this,"There was an error to connect to internet",Toast.LENGTH_SHORT);
+                        finish();
+                    }
+                    else {
+                        progressBar.setVisibility(View.GONE);
+                        listView.setAdapter(new BranchCursorAdapter(ShowBranches.this,result,0));
+                        Toast.makeText(ShowBranches.this,"Connection to Companies DataBase Success",Toast.LENGTH_SHORT);
+                    }
                 }
             }.execute();
         }

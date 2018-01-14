@@ -10,7 +10,6 @@ public class Branch {
     private String city;
     private String street;
     private int numApart;
-    //private Bitmap image;
 
 
     public String getCity() {

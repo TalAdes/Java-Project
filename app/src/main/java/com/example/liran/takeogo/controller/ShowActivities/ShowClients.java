@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
@@ -14,6 +16,7 @@ import com.example.liran.takeogo.models.backend.IDBManager;
 
 public class ShowClients extends Activity {
 
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,7 @@ public class ShowClients extends Activity {
         setContentView(R.layout.activity_show_clients);
         final IDBManager db = DBManagerFactory.getMnager();
         final ListView listView = (ListView) findViewById(R.id.clientListView);
-
+        progressBar = (ProgressBar)findViewById(R.id.clientProgressBar);
         try {
             new AsyncTask<Void,Void,Cursor>(){
                 @Override
@@ -41,6 +44,14 @@ public class ShowClients extends Activity {
                 }
                 @Override
                 protected void onPostExecute(Cursor result) {
+                    if(result==null)
+                    {
+                        Toast.makeText(ShowClients.this,"There was an error to connect to internet",Toast.LENGTH_SHORT);
+                        finish();
+                    }
+
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ShowClients.this,"Connection to DataBase Success",Toast.LENGTH_SHORT);
                     listView.setAdapter(new ClientCursorAdapter(ShowClients.this,result,0 ));
                     Toast.makeText(ShowClients.this,"succes :)",Toast.LENGTH_SHORT);
                 }

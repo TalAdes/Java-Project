@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,12 +24,14 @@ public class ShowCar extends Activity {
 
     private IDBManager db;
     private Spinner spinner;
+    private ProgressBar progressBar;
 
     private ListView listView;
     @Override protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_car);
+        progressBar = (ProgressBar)findViewById(R.id.CarProgressBar);
         db = DBManagerFactory.getMnager();
         spinner   = (Spinner)findViewById(R.id.chosen_carModel);
 
@@ -49,6 +52,14 @@ public class ShowCar extends Activity {
                     return spinnerArray;
                 }
                 @Override protected void onPostExecute(List<String> lst) {
+                    if(lst.isEmpty())
+                    {
+                        Toast.makeText(ShowCar.this,"There was an error to connect to internet",Toast.LENGTH_SHORT);
+                        finish();
+                    }
+
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ShowCar.this,"Connection to DataBase Success",Toast.LENGTH_SHORT);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowCar.this, android.R.layout.simple_spinner_item, lst);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
