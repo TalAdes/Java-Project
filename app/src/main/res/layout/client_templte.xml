@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="200dp"
+    android:layout_marginLeft="10dp">
 
 
     <ImageView
@@ -11,12 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="167dp"
         android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_weight="1"
-        app:srcCompat="@drawable/ic_user" />
+        android:src="@drawable/ic_user" />
 
     <LinearLayout
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -25,42 +28,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="First Name:" />
+            android:text="First Name:" />
 
         <TextView
             android:id="@+id/lnameC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Last Name:" />
+            android:text="Last Name:" />
 
         <TextView
             android:id="@+id/idC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="ID:" />
+            android:text="ID:" />
 
         <TextView
             android:id="@+id/phoneC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Phone Number:" />
+            android:text="Phone Number:" />
 
         <TextView
             android:id="@+id/emailC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Email:" />
+            android:text="Email:" />
 
         <TextView
             android:id="@+id/creditC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            tools:text="Credit Number:" />
+            android:text="Credit Number:" />
 
     </LinearLayout>
 
