@@ -5,18 +5,22 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.content.Intent;
 
+import com.example.liran.takeogo.controller.AddActivities.AddClientActivity;
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.controller.Adapters.ClientCursorAdapter;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 
-public class ShowClients extends Activity {
+public class ShowClients extends Activity  {
 
     private ProgressBar progressBar;
+    private Button  floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,4 +63,5 @@ public class ShowClients extends Activity {
         }
         catch (Exception e) {Toast.makeText(this,"fail :(",Toast.LENGTH_SHORT);}
     }
+
 }

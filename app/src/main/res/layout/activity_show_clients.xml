@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.liran.takeogo.controller.ShowActivities.ShowClients">
+    tools:context="com.example.liran.takeogo.controller.ShowActivities.ShowClients"
+    android:background="#ffffff">
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButtonClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="603dp" />
 
     <ProgressBar
         android:id="@+id/clientProgressBar"
@@ -24,7 +34,9 @@
     <ListView
         android:id="@+id/clientListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </ListView>
+
 
 
 </android.support.constraint.ConstraintLayout>

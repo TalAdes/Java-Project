@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.liran.takeogo.controller.AddActivities.AddClientActivity">
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddClientActivity"
+    android:background="@drawable/audi_r8_v10_side_view_road_109803_360x640">
 
 
     <LinearLayout
@@ -20,7 +21,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="אותיות באנגלית בלבד"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -28,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="שם פרטי"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 
@@ -49,7 +54,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="אותיות באנגלית בלבד"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -57,7 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="שם משפחה"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 
@@ -78,7 +87,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="מספר תז כולל ספרת ביקורת"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/editText"
@@ -89,7 +100,9 @@
             android:hint="מספר זהות"
             android:inputType="textPersonName"
             android:text="מספר זהות"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <TextView
@@ -109,7 +122,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="מספר ישראלי המורכב מספרות בלבד"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -118,7 +133,9 @@
             android:layout_weight="1"
             android:text="מספר טלפון"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:text="מספר טלפון" />
+            tools:text="מספר טלפון"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <TextView
@@ -138,7 +155,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="example@xx.yy"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -146,7 +165,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="דואר אלקטרוני"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 
@@ -167,7 +188,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="מספר כרטיס אשראי בין לאומי בלבד"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -175,7 +198,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="מספר אשראי"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <TextView
@@ -185,8 +210,18 @@
 
     <Button
         android:id="@+id/addClientButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="הוסף לקוח" />
+        android:layout_width="194dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="-0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:text="הוסף לקוח"
+        android:textColor="#5478F0"
+        android:textSize="31sp" />
 
 </LinearLayout>

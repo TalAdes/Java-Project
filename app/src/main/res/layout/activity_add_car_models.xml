@@ -3,46 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/audi_r8_v10_side_view_road_109803_360x640"
     android:orientation="vertical"
-    tools:context="com.example.liran.takeogo.controller.AddActivities.AddCarModel"
-    android:background="@drawable/audi_r8_v10_side_view_road_109803_360x640">
+    tools:context="com.example.liran.takeogo.controller.AddActivities.AddCarModel">
 
 
     <EditText
         android:id="@+id/CompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:hint="הכנס את שם החברה"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <EditText
         android:id="@+id/ModelName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="הכנס את שם הדגם"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/ModelNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="הכנס את מספר הדגם"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/EngineVolume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="הכנס את גודל נפח המנוע"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/SeatsNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="הכנס את מספר מקומות ישיבה"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
     <Spinner
         android:id="@+id/GearboxSpinner"
@@ -54,19 +65,22 @@
         android:layout_width="57dp"
         android:layout_height="57dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/background_light"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:background="#00000000">
 
         <ImageButton
             android:id="@+id/imageButtonCarModel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:src="@drawable/camera_icon" />
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_big_instagram_logo" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="175dp"
@@ -95,9 +109,9 @@
         android:shadowDx="-0"
         android:shadowDy="0"
         android:shadowRadius="0"
+        android:text="הוסף דגם מכונית"
         android:textColor="#5478F0"
-        android:textSize="25sp"
-        android:text="הוסף דגם מכונית" />
+        android:textSize="25sp" />
 
 
 </LinearLayout>

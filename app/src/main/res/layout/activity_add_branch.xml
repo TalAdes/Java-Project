@@ -15,9 +15,9 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="שם העיר"
-        android:textColorHint="#ffffff"
         android:inputType="text"
-        android:textColor="#fffffff"/>
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/streetEditText"
@@ -27,7 +27,7 @@
         android:ems="10"
         android:inputType="text"
         android:textColorHint="#ffffff"
-        android:textColor="#fffffff"/>
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/numApartEditText"
@@ -37,7 +37,7 @@
         android:hint="מספר דירה"
         android:inputType="number"
         android:textColorHint="#ffffff"
-        android:textColor="#fffffff"/>
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/idBranchEditText"
@@ -47,7 +47,7 @@
         android:hint="מספר הסניף"
         android:inputType="number"
         android:textColorHint="#ffffff"
-        android:textColor="#fffffff"/>
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/numParkingEditText"
@@ -57,7 +57,7 @@
         android:hint="מספר מקומות חניה"
         android:inputType="number"
         android:textColorHint="#ffffff"
-        android:textColor="#fffffff"/>
+        android:textColor="#ffffff"/>
 
     <LinearLayout
         android:layout_width="100dp"
