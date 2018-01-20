@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.liran.takeogo.R;
+
 import com.example.liran.takeogo.controller.Adapters.CarCursorAdapter;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
