@@ -11,10 +11,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import com.example.liran.takeogo.R;
 
 import com.example.liran.takeogo.controller.Adapters.CarCursorAdapter;
+import com.example.liran.takeogo.controller.AddActivities.AddCarActivity;
 import com.example.liran.takeogo.models.backend.DBManagerFactory;
 import com.example.liran.takeogo.models.backend.IDBManager;
 
@@ -26,8 +28,9 @@ public class ShowCar extends Activity {
     private IDBManager db;
     private Spinner spinner;
     private ProgressBar progressBar;
-
+    private FloatingActionButton fab;
     private ListView listView;
+
     @Override protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,15 @@ public class ShowCar extends Activity {
         progressBar = (ProgressBar)findViewById(R.id.CarProgressBar);
         db = DBManagerFactory.getMnager();
         spinner   = (Spinner)findViewById(R.id.chosen_carModel);
+        fab = (FloatingActionButton)findViewById(R.id.floatingActionButtonCar);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShowCar.this,AddCarActivity.class));
+
+            }
+        });
 
         try {
             new AsyncTask<Void,Void,List<String>>(){

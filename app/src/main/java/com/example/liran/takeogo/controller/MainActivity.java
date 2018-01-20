@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.liran.takeogo.R;
 import com.example.liran.takeogo.controller.AddActivities.AddBranchActivity;
@@ -19,14 +20,11 @@ import com.example.liran.takeogo.controller.ShowActivities.ShowClients;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button addCarButton;
-    private Button showAllCarButton;
-    private Button addModelCarButton;
-    private Button showAllModelCarButton;
-    private Button addClientButton;
-    private Button showAllClientButton;
-    private Button showAllBranchButton;
-    private Button addBranchButton;
+    private ImageButton showCarButton;
+    private ImageButton showClientButton;
+    private ImageButton showModelCarButton;
+    private ImageButton showBrunchButton;
+
 
 
     @Override
@@ -38,35 +36,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void findViews() {
-        addCarButton = (Button)findViewById( R.id.addCarButton );
-        showAllCarButton = (Button)findViewById( R.id.showAllCarButton );
-        addModelCarButton = (Button)findViewById( R.id.addModelCarButton );
-        showAllModelCarButton = (Button)findViewById( R.id.showAllModelCarButton );
-        addClientButton = (Button)findViewById( R.id.addClientButton );
-        showAllClientButton = (Button)findViewById( R.id.showAllClientButton );
-        showAllBranchButton = (Button)findViewById( R.id.showAllBranchButton );
-        addBranchButton = (Button)findViewById( R.id.addBranchButton );
+        showBrunchButton = (ImageButton)findViewById( R.id.buttonbrunches );
+        showClientButton = (ImageButton)findViewById( R.id.buttonClient );
+        showCarButton = (ImageButton)findViewById( R.id.carButton );
+        showModelCarButton = (ImageButton)findViewById( R.id.carModelButton );
 
-        addCarButton.setOnClickListener( this );
-        showAllCarButton.setOnClickListener( this );
-        addModelCarButton.setOnClickListener( this );
-        showAllModelCarButton.setOnClickListener( this );
-        addClientButton.setOnClickListener( this );
-        showAllClientButton.setOnClickListener( this );
-        showAllBranchButton.setOnClickListener( this );
-        addBranchButton.setOnClickListener( this );
+
+        showBrunchButton.setOnClickListener( this );
+        showClientButton.setOnClickListener( this );
+        showCarButton.setOnClickListener( this );
+        showModelCarButton.setOnClickListener( this );
+
     }
 
     @Override
     public void onClick(View v) {
-        if ( v == addCarButton )       addCarButton();
-        else if ( v == addModelCarButton )  addCarModelButton();
-        else if ( v == addClientButton )    addClientButton();
-        else if ( v == addBranchButton )    addBranchButton();
-        else if ( v == showAllCarButton )       showAllCarButton();
-        else if ( v == showAllModelCarButton )  showAllModelCarButton();
-        else if ( v == showAllClientButton ) showAllClientButton();
-        else if ( v == showAllBranchButton ) showAllBranchButton();
+        if ( v == showCarButton )   showAllCarButton();
+        else if ( v == showModelCarButton )  showAllModelCarButton();
+        else if ( v == showClientButton ) showAllClientButton();
+        else if ( v == showBrunchButton ) showAllBranchButton();
     }
 
 
@@ -86,23 +74,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,ShowCarModels.class);
         startActivity(intent);
     }
-
-    private void addCarModelButton() {
-        Intent intent = new Intent(this,AddCarModel.class);
-        startActivity(intent);
-    }
-    private  void addCarButton(){
-        Intent intent = new Intent(this, AddCarActivity.class);
-        startActivity(intent);
-    }
-    private  void addBranchButton(){
-        Intent intent = new Intent(this, AddBranchActivity.class);
-        startActivity(intent);
-    }
-    private  void addClientButton(){
-        Intent intent = new Intent(this,AddClientActivity.class);
-        startActivity(intent);
-    }
-
 
 }

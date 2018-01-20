@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -17,13 +18,26 @@ import com.example.liran.takeogo.models.backend.IDBManager;
 public class ShowClients extends Activity {
 
     private ProgressBar progressBar;
+<<<<<<< HEAD
 
+=======
+    private FloatingActionButton fab;
+>>>>>>> 7db9d49dd76ec0e142a35c594bfee318ba1aee1d
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_clients);
         final IDBManager db = DBManagerFactory.getMnager();
         final ListView listView = (ListView) findViewById(R.id.clientListView);
+        fab = (FloatingActionButton)findViewById(R.id.floatingActionButtonClient);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShowClients.this,AddClientActivity.class));
+
+            }
+        });
         progressBar = (ProgressBar)findViewById(R.id.clientProgressBar);
         try {
             new AsyncTask<Void,Void,Cursor>(){
